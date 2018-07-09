@@ -1,5 +1,5 @@
 {
-  "name": "linebot",
+  "name": "mst-line-bot",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
