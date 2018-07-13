@@ -320,13 +320,13 @@ function handleImage(message, replyToken) {
     //   conn.connect(function(err) {
     //          var req = new sql.Request(conn); 
              
-    //          conn.query('INSERT INTO [dbo].[Image] (Image_id, original, preview , user_id) VALUES ("'+message.id+'", "'+original+'" ,"'+preview+'","'+sender+'" )', function (err, result){
+    //          conn.query('INSERT INTO [dbo].[Image] (Image_id, original, preview ) VALUES ("'+message.id+'", "'+original+'" ,"'+preview+'","'+sender+'" )', function (err, result){
                 
         return client.replyMessage(
         replyToken,
         { 
           type: 'text',
-          text : sender
+          text : message.id
         //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
         //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
