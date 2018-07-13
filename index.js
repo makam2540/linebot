@@ -322,7 +322,7 @@ function handleImage(message, replyToken) {
         return client.replyMessage(
         replyToken,
         { 
-          type: 'image',
+          type: 'text',
           text : original 
         //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
         //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
