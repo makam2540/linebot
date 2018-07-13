@@ -10,7 +10,7 @@ const cp = require('child_process');
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: 'Rz8z1ee8jjPGKgYsiVruxdBDpWA4ryYEh5QKu7KLtb4o1HN3h38LHyWUEoWYOGVolNmGP1fFw7UbxocelHU/0Y/j+b2/jch/cpqEW6dhyi8smlFI+vsQVttuzLtCZPHm5K7MNg39sFK7Z8jWxhv7ngdB04t89/1O/w1cDnyilFU=',
-  channelSecret: 'cfb81693a3484b47003facfd2ba88b38'
+  channelSecret: 'cfb81693a3484b47003facfd2ba88b38',
 };
 
 // base URL for webhook server
