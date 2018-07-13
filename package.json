@@ -10,5 +10,9 @@
     "@line/bot-sdk": "^5.0.0",
     "express": "^4.16.2",
     "get-audio-duration": "0.0.1"
+    "body-parser": "^1.18.3",
+    "fs": "0.0.1-security",
+    "mssql": "^4.1.0",
+    "request": "^2.87.0"
   }
 }
