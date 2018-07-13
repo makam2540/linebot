@@ -313,18 +313,13 @@ function handleImage(message, replyToken) {
              
       return client.replyMessage(
 
-        // replyToken,
-        // { 
-        //   type: 'image',
-        //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-        //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-        // }
-
         replyToken,
         { 
-          type: 'text',
-          text : downloadPath
+          type: 'image',
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
+
     
       );  //end replyMessage
 
