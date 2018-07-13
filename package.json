@@ -1,5 +1,5 @@
 {
-  "name": "kitchensink",
+  "name": "mst-line-bot",
   "version": "0.0.0",
   "description": "A kitchen-sink LINE bot example",
   "main": "index.js",
