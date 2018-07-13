@@ -56,6 +56,8 @@ app.use('/downloaded', express.static('downloaded'));
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
   // req.body.events should be an array of events
+  var sender = req.body.events[0].source.userId
+
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
   }
@@ -310,9 +312,10 @@ function handleImage(message, replyToken) {
       conn.connect(function(err) {
              var req = new sql.Request(conn); 
              
-             
-      return client.replyMessage(
+             con.query('INSERT INTO [dbo].[Image] (Image_id, path_id, dowload , user_id) VALUES ('+message.id+', '+previewPath+' ,'+downloadPath+','+sender+' )', function (err, result){
+                
 
+        return client.replyMessage(
         replyToken,
         { 
           type: 'image',
@@ -322,7 +325,7 @@ function handleImage(message, replyToken) {
 
     
       );  //end replyMessage
-
+    })   // end query
     })  //end connect
 
     }); // then((downloadPath)
