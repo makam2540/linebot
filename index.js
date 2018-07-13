@@ -11,12 +11,12 @@ var request = require('request')
 var sql = require('mssql')
 var sqlInstance = require("mssql")
 
-var port = process.env.PORT || 7777;
-// parse application/json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
+// var port = process.env.PORT || 7777;
+// // parse application/json
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+// 	extended: true
+// }));
 
 // connect to your database
 
