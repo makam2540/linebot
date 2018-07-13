@@ -312,7 +312,7 @@ function handleImage(message, replyToken) {
       var original = baseURL + '/downloaded/' + path.basename(downloadPath)
       var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
-      var sender = source.userId
+      var user_id = source.userId
 
     //   var conn = new sql.ConnectionPool(dbConfig);
     //   conn.connect(function(err) {
@@ -324,7 +324,7 @@ function handleImage(message, replyToken) {
         replyToken,
         { 
           type: 'text',
-          text : sender
+          text : user_id
         //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
         //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
