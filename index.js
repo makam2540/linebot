@@ -57,10 +57,10 @@ app.use('/downloaded', express.static('downloaded'));
 app.post('/callback', line.middleware(config), (req, res) => {
   // req.body.events should be an array of events
 
-  var sender = req.body.events[0].source.userId
+//   var sender = req.body.events[0].source.userId
 
-  console.log(text, sender)
-  console.log(typeof sender)
+//   console.log(text, sender)
+//   console.log(typeof sender)
 
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
