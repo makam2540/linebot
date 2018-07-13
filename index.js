@@ -321,7 +321,7 @@ function handleImage(message, replyToken) {
         replyToken,
         { 
           type: 'text',
-          text : sender
+          text : source.userId
         //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
         //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
