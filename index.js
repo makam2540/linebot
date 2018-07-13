@@ -308,25 +308,29 @@ function handleImage(message, replyToken) {
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-      var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect(function(err) {
-             var req = new sql.Request(conn); 
+      var original = baseURL + '/downloaded/' + path.basename(downloadPath)
+      var preview = baseURL + '/downloaded/' + path.basename(previewPath)
+
+    //   var conn = new sql.ConnectionPool(dbConfig);
+    //   conn.connect(function(err) {
+    //          var req = new sql.Request(conn); 
              
-             con.query('INSERT INTO [dbo].[Image] (Image_id, path_id, dowload , user_id) VALUES ('+message.id+', '+previewPath+' ,'+downloadPath+','+sender+' )', function (err, result){
+    //          con.query('INSERT INTO [dbo].[Image] (Image_id, path_id, dowload , user_id) VALUES ('+message.id+', '+original+' ,'+preview+','+sender+' )', function (err, result){
                 
 
         return client.replyMessage(
         replyToken,
         { 
           type: 'image',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          text : original 
+        //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+        //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
 
     
       );  //end replyMessage
-    })   // end query
-    })  //end connect
+    // })   // end query
+    // })  //end connect
 
     }); // then((downloadPath)
 }  // end function
