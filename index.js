@@ -308,8 +308,7 @@ function handleImage(message, replyToken) {
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-      var original = baseURL + '/downloaded/' + path.basename(downloadPath)
-      var preview = baseURL + '/downloaded/' + path.basename(previewPath)
+     
 
     //   var conn = new sql.ConnectionPool(dbConfig);
     //   conn.connect(function(err) {
@@ -317,6 +316,8 @@ function handleImage(message, replyToken) {
              
     //          con.query('INSERT INTO [dbo].[Image] (Image_id, path_id, dowload , user_id) VALUES ('+message.id+', '+original+' ,'+preview+','+sender+' )', function (err, result){
                 
+        var original = baseURL + '/downloaded/' + path.basename(downloadPath)
+        var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
         return client.replyMessage(
         replyToken,
