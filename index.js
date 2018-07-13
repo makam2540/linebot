@@ -306,9 +306,9 @@ function handleImage(message, replyToken) {
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-    //   var conn = new sql.ConnectionPool(dbConfig);
-    //   conn.connect(function(err) {
-    //          var req = new sql.Request(conn); 
+      var conn = new sql.ConnectionPool(dbConfig);
+      conn.connect(function(err) {
+             var req = new sql.Request(conn); 
              
              
       return client.replyMessage(
@@ -323,7 +323,7 @@ function handleImage(message, replyToken) {
     
       );  //end replyMessage
 
-    // })  //end connect
+    })  //end connect
 
     }); // then((downloadPath)
 }  // end function
