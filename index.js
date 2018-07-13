@@ -57,11 +57,6 @@ app.use('/downloaded', express.static('downloaded'));
 app.post('/callback', line.middleware(config), (req, res) => {
   // req.body.events should be an array of events
 
-//   var sender = req.body.events[0].source.userId
-
-//   console.log(text, sender)
-//   console.log(typeof sender)
-
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
   }
@@ -303,6 +298,7 @@ function handleText(message, replyToken, source) {
 
 // //////////////////////// image
 function handleImage(message, replyToken) {
+
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
@@ -316,6 +312,8 @@ function handleImage(message, replyToken) {
       var original = baseURL + '/downloaded/' + path.basename(downloadPath)
       var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
+      var sender = source.userId
+
     //   var conn = new sql.ConnectionPool(dbConfig);
     //   conn.connect(function(err) {
     //          var req = new sql.Request(conn); 
@@ -326,7 +324,7 @@ function handleImage(message, replyToken) {
         replyToken,
         { 
           type: 'text',
-          text : original
+          text : sender
         //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
         //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
