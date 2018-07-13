@@ -56,7 +56,11 @@ app.use('/downloaded', express.static('downloaded'));
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
   // req.body.events should be an array of events
-  
+
+  var sender = req.body.events[0].source.userId
+
+  console.log(text, sender)
+  console.log(typeof sender)
 
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
@@ -302,7 +306,6 @@ function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  var sender = events[0].source.userId
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
