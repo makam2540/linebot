@@ -6,31 +6,6 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 
-var bodyParser = require('body-parser')
-var request = require('request')
-var sql = require('mssql')
-var sqlInstance = require("mssql")
-
-var port = process.env.PORT || 7777;
-
-// parse application/json
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-	extended: true
-}));
-
-// connect to your database
-
- var dbConfig = {
-                      user: 'sa',
-                      password: 'P@ssw0rd1234',
-                      server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-                      database: 'LinebotDB',
-                      port:1433,
-                      options: {
-                          encrypt: true // Use this if you're on Windows Azure
-                      }                      
-    };
 
 // create LINE SDK config from env variables
 const config = {
@@ -294,7 +269,7 @@ function handleText(message, replyToken, source) {
   }
 }
 
-// //////////////////////// image
+
 function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
