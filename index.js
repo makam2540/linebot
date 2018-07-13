@@ -308,30 +308,28 @@ function handleImage(message, replyToken) {
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-     
+      var original = baseURL + '/downloaded/' + path.basename(downloadPath)
+      var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
-    //   var conn = new sql.ConnectionPool(dbConfig);
-    //   conn.connect(function(err) {
-    //          var req = new sql.Request(conn); 
+      var conn = new sql.ConnectionPool(dbConfig);
+      conn.connect(function(err) {
+             var req = new sql.Request(conn); 
              
-    //          con.query('INSERT INTO [dbo].[Image] (Image_id, path_id, dowload , user_id) VALUES ('+message.id+', '+original+' ,'+preview+','+sender+' )', function (err, result){
+             conn.query('INSERT INTO [dbo].[Image] (Image_id, original, preview , user_id) VALUES ('+message.id+', '+original+' ,'+preview+','+sender+' )', function (err, result){
                 
-        var original = baseURL + '/downloaded/' + path.basename(downloadPath)
-        var preview = baseURL + '/downloaded/' + path.basename(previewPath)
-
         return client.replyMessage(
         replyToken,
         { 
-          type: 'text',
-          text : original 
-        //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-        //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          type: 'image',
+        //   text : "success"
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
 
-    
       );  //end replyMessage
-    // })   // end query
-    // })  //end connect
+
+    })   // end query
+    })  //end connect
 
     }); // then((downloadPath)
 }  // end function
