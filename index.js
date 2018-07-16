@@ -78,23 +78,8 @@ const replyText = (token, texts) => {
   );
 };
 
-
-function handleEvent(event) {
-  const a = event.message.type;
-  return client.replyMessage(
-    replyToken,
-    {
-      type: 'text',
-      text : a
-    }
-  );
-}
-
-
-
-
 // callback function to handle a single event
-function handleEvent1(event) {
+function handleEvent(event) {
   switch (event.type) {
     case 'message':
       const message = event.message;
@@ -113,13 +98,6 @@ function handleEvent1(event) {
           return handleSticker(message, event.replyToken);
         default:
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-        return client.replyMessage(
-          replyToken,
-          {
-            type: 'text',
-            text : message.type
-          }
-        );
       }
 
     case 'follow':
