@@ -314,11 +314,12 @@ function handleImage(message, replyToken, source) {
 
   
       var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect(function(err) {
+      conn.connect.then(function(err) {
              var req = new sql.Request(conn); 
-             
-               conn.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')",function(err,result){
+               req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')",function(err,result){
+               
                 
+               
            
           
         return client.replyMessage(
