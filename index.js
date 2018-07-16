@@ -316,12 +316,9 @@ function handleImage(message, replyToken, source) {
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect.then(function(err) {
              var req = new sql.Request(conn); 
-               req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')",function(err,result){
+               req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')");
                
-                
-               
-           
-          
+
         return client.replyMessage(
         replyToken,
         { 
@@ -332,7 +329,7 @@ function handleImage(message, replyToken, source) {
         }
       );  //end replyMessage
  
-    });// end query
+  //  });// end query
     
 })  //end connect
  
