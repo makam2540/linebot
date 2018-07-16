@@ -371,7 +371,7 @@ function handleVideo(message, replyToken) {
           // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
 
           type: 'text',
-          text : ''+originalContentUrl +'\n' +previewImageUrl,
+          text : 'success!!!!!!!!',
         }
       );
     });
