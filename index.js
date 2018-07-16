@@ -310,16 +310,16 @@ function handleImage(message, replyToken, source) {
 
       var original1 = baseURL + '/downloaded/' + path.basename(downloadPath);
       var preview1 = baseURL + '/downloaded/' + path.basename(previewPath);
-      var U = source.userId;
+      // var U = source.userId
 
   
-      // var conn = new sql.ConnectionPool(dbConfig);
-      // conn.connect(function(err) {
-      //        var req = new sql.Request(conn); 
+      var conn = new sql.ConnectionPool(dbConfig);
+      conn.connect(function(err) {
+             var req = new sql.Request(conn); 
              
-      //          conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"')")
-      //          // end query
-      //     })  //end connect
+               conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"')")
+               // end query
+          })  //end connect
           
         return client.replyMessage(
         replyToken,
