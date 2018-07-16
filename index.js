@@ -318,7 +318,10 @@ function handleImage(message, replyToken) {
              var req = new sql.Request(conn); 
              
              conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview], [user_id] ) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','" + user_id + "')", function (err, result){
-                
+             
+            })   // end query
+          })  //end connect
+          
         return client.replyMessage(
         replyToken,
         { 
@@ -328,8 +331,7 @@ function handleImage(message, replyToken) {
         //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );  //end replyMessage
-    })   // end query
-    })  //end connect
+ 
  
     }); // then((downloadPath)
 }  // end function
