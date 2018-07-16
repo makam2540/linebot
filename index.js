@@ -85,7 +85,7 @@ function handleEvent(event) {
       const message = event.message;
       switch (message.type) {
         case 'text':
-          return handleText(message, event.replyToken, event.source);
+         // return handleText(message, event.replyToken, event.source);
           return client.replyMessage(
             replyToken,
             {
@@ -96,7 +96,7 @@ function handleEvent(event) {
         case 'image':
           return handleImage(message, event.replyToken, event.source);
         case 'video':
-          return handleVideo(message, event.replyToken);
+         // return handleVideo(message, event.replyToken);
           return client.replyMessage(
             replyToken,
             {
