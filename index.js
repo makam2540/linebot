@@ -352,14 +352,14 @@ function handleImage(message, replyToken, source) {
 
 
 function handleVideo(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath1 = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
+  const previewPath1 = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+      cp.execSync(`convert mp4:${downloadPath1}[0] jpeg:${previewPath1}`);
 
       return client.replyMessage(
         replyToken,
@@ -369,8 +369,8 @@ function handleVideo(message, replyToken) {
           // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
 
           type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath1),
         }
       );
     });
