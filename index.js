@@ -355,7 +355,7 @@ function handleVideo(message, replyToken) {
   const downloadPath1 = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   const previewPath1 = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  return downloadContent(message.id, downloadPath)
+  return downloadContent(message.id, downloadPath1)
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
