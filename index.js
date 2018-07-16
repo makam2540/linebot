@@ -90,7 +90,7 @@ function handleEvent(event) {
             replyToken,
             {
               type: 'text',
-              text : message.type
+              text : 'message.type'
             }
           );
         case 'image':
