@@ -312,20 +312,20 @@ function handleImage(message, replyToken, source) {
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
      
-        // var conn = new sql.ConnectionPool(dbConfig);
-        // conn.connect().then(function() {
-        //       var req = new sql.Request(conn); 
+        var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
                   
-        //         req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
+                req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-        //         req.query('SELECT * FROM Image').then(function (result){
-        //               for(var i=0;i<result.rowsAffected;i++){
-        //                 if(result.recordset[i].Image_id == message.id)
-        //                 {
-        //                   var dPath = result.recordset[i].oridinal;
-        //                   var pPath = result.recordset[i].preview;
-        //                 }
-        //               }
+                req.query('SELECT * FROM Image').then(function (result){
+                      for(var i=0;i<result.rowsAffected;i++){
+                        if(result.recordset[i].Image_id == message.id)
+                        {
+                          var dPath = result.recordset[i].oridinal;
+                          var pPath = result.recordset[i].preview;
+                        }
+                      }
 
                       return client.replyMessage(
                       replyToken,
@@ -334,16 +334,16 @@ function handleImage(message, replyToken, source) {
                         // text : 'id = '+dPath
 
                         type: 'image',
-                        // originalContentUrl: dPath,
-                        // previewImageUrl: pPath,
-                        originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                        previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                        originalContentUrl: dPath,
+                        previewImageUrl: pPath,
+                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                       }
                     );  //end replyMessage
  
-                // })// end query select
+                })// end query select
     
-        // });  //end connect
+        });  //end connect
  
     }); // then((downloadPath)
 }  // end function
@@ -364,13 +364,13 @@ function handleVideo(message, replyToken) {
       return client.replyMessage(
         replyToken,
         {
-          // type: 'video',
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-
           type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath1),
+          originalContentUrl: 'https://youtu.be/bL9IJkGrOGY',
+          previewImageUrl: 'https://youtu.be/bL9IJkGrOGY',
+
+          // type: 'video',
+          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
+          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath1),
         }
       );
     });
