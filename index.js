@@ -325,10 +325,10 @@ function handleImage(message, replyToken) {
         return client.replyMessage(
         replyToken,
         { 
-          type: 'text',
-          text : user_id
-        //   originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-        //   previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          type: 'image',
+          // text : user_id
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );  //end replyMessage
  
