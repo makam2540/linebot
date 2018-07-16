@@ -312,30 +312,28 @@ function handleImage(message, replyToken, source) {
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
      
- 
-     
-
-  
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect().then(function() {
              var req = new sql.Request(conn); 
-   req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
+                
+                req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-                req.query('SELECT * FROM Image').then(function (rows) 
-                {
-                for(var i=0;i<rows.rowsAffected;i++){
-                  if(rows.recordset[i].Image_id == message.id)
-                  {
-                    var AdownloadPath = rows.recordset[i].oridinal;
-                    var ApreviewPath = rows.recordset[i].preview;
-                  }
-                }
+                // req.query('SELECT * FROM Image WHERE Image_id ='+message.id).then(function (result) 
+                // {
+                   
+                // for(var i=0;i<rows.rowsAffected;i++){
+                //   if(rows.recordset[i].Image_id == message.id)
+                //   {
+                //     var AdownloadPath = rows.recordset[i].oridinal;
+                //     var ApreviewPath = rows.recordset[i].preview;
+                //   }
+                // }
 
                 return client.replyMessage(
                 replyToken,
                 { 
                   type: 'text',
-                  text : 'id = '+AdownloadPath
+                  text : 'id = '+Uid
                   // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                   // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                 }
