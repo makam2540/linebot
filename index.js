@@ -312,22 +312,37 @@ function handleImage(message, replyToken, source) {
       var preview1 = baseURL + '/downloaded/' + path.basename(previewPath);
       // var U = source.userId
 
-  
+      var AdownloadPath
+      var ApreviewPath
+
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect(function(err) {
              var req = new sql.Request(conn); 
              
-               conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"')")
+             req.query('SELECT * FROM Image').then(function (rows) 
+                    {
+                    for(var i=0;i<rows.rowsAffected;i++){
+                      if(rows.recordset[i].Image_id == message.id)
+                      {
+                        AdownloadPath = rows.recordset[i].oridinal;
+                        ApreviewPath = rows.recordset[i].preview;
+                      }
+                    }
+              //  conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"')")
                // end query
           })  //end connect
           
         return client.replyMessage(
         replyToken,
         { 
-          type: 'text',
-          text : '-----'
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          // type: 'text',
+          // text : '-----'
+          // // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
           // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+
+          type: 'image',
+          originalContentUrl: AdownloadPath,
+          previewImageUrl: ApreviewPath
         }
       );  //end replyMessage
  
