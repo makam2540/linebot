@@ -5,32 +5,6 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
-var bodyParser = require('body-parser')
-var request = require('request')
-var sql = require('mssql')
-var sqlInstance = require("mssql")
-
-// var port = process.env.PORT || 7777;
-// // parse application/json
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-// 	extended: true
-// }));
-
-// connect to your database
-
- var dbConfig = {
-                      user: 'sa',
-                      password: 'P@ssw0rd1234',
-                      server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-                      database: 'LinebotDB',
-                      port:1433,
-                      options: {
-                          encrypt: true // Use this if you're on Windows Azure
-                      }                      
-    };
-
-   
 
 // create LINE SDK config from env variables
 const config = {
@@ -55,7 +29,6 @@ app.use('/downloaded', express.static('downloaded'));
 // webhook callback
 app.post('/callback', line.middleware(config), (req, res) => {
   // req.body.events should be an array of events
-
   if (!Array.isArray(req.body.events)) {
     return res.status(500).end();
   }
@@ -87,15 +60,15 @@ function handleEvent(event) {
         case 'text':
           return handleText(message, event.replyToken, event.source);
         case 'image':
-          return handleImage(message, event.replyToken, event.source);
+          return handleImage(message, event.replyToken);
         case 'video':
-          return handleVideo(message, event.replyToken, event.source);
+          return handleVideo(message, event.replyToken);
         case 'audio':
-          return handleAudio(message, event.replyToken, event.source);
+          return handleAudio(message, event.replyToken);
         case 'location':
-          return handleLocation(message, event.replyToken, event.source);
+          return handleLocation(message, event.replyToken);
         case 'sticker':
-          return handleSticker(message, event.replyToken, event.source);
+          return handleSticker(message, event.replyToken);
         default:
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
@@ -295,61 +268,26 @@ function handleText(message, replyToken, source) {
   }
 }
 
-// //////////////////////// image
-function handleImage(message, replyToken, source) {
-
+function handleImage(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-      var original = baseURL + '/downloaded/' + path.basename(downloadPath);
-      var preview = baseURL + '/downloaded/' + path.basename(previewPath);
-      var Uid = source.userId
-     
-        var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function() {
-              var req = new sql.Request(conn); 
-                  
-                req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
-              
-                req.query('SELECT * FROM Image').then(function (result){
-                      for(var i=0;i<result.rowsAffected;i++){
-                        if(result.recordset[i].Image_id == message.id)
-                        {
-                          var dPath = result.recordset[i].oridinal;
-                          var pPath = result.recordset[i].preview;
-                        }
-                      }
-
-                      return client.replyMessage(
-                      replyToken,
-                      { 
-                        // type: 'text',
-                        // text : 'id = '+dPath
-
-                        type: 'image',
-                        originalContentUrl: dPath,
-                        previewImageUrl: pPath,
-                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-                      }
-                    );  //end replyMessage
- 
-                })// end query select
-    
-        });  //end connect
- 
-    }); // then((downloadPath)
-}  // end function
-
-
-
+      return client.replyMessage(
+        replyToken,
+        {
+          type: 'image',
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+        }
+      );
+    });
+}
 
 function handleVideo(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
@@ -360,18 +298,13 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
-     var originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
-      var previewImageUrl =  baseURL + '/downloaded/' + path.basename(previewPath)
 
       return client.replyMessage(
         replyToken,
         {
-          // type: 'video',
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-
-          type: 'text',
-          text : ''+originalContentUrl +'\n' +previewImageUrl,
+          type: 'video',
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );
     });
