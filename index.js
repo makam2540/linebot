@@ -309,6 +309,7 @@ function handleImage(message, replyToken) {
 
       var original = baseURL + '/downloaded/' + path.basename(downloadPath)
       var preview = baseURL + '/downloaded/' + path.basename(previewPath)
+      var  UsID = source.userId
   
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect(function(err) {
