@@ -300,7 +300,7 @@ function handleImage(message, replyToken, source) {
 
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
- 
+  var ss = source.userId
   
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
@@ -324,7 +324,7 @@ function handleImage(message, replyToken, source) {
         replyToken,
         { 
           type: 'text',
-          text : ''+source.userId 
+          text : '-----'
           // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
           // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
