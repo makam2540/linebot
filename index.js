@@ -341,9 +341,9 @@ function handleImage(message, replyToken, source) {
                       }
                     );  //end replyMessage
  
-                })// end query select
+                // })// end query select
     
-        });  //end connect
+        // });  //end connect
  
     }); // then((downloadPath)
 }  // end function
