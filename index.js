@@ -83,22 +83,22 @@ function handleEvent(event) {
   switch (event.type) {
     case 'message':
       const message = event.message;
-          switch (message.type) {
-            case 'text':
-              return handleText(message, event.replyToken, event.source);
-            case 'image':
-              return handleImage(message, event.replyToken, event.source);
-            case 'video':
-              return handleVideo(message, event.replyToken);
-            case 'audio':
-              return handleAudio(message, event.replyToken);
-            case 'location':
-              return handleLocation(message, event.replyToken);
-            case 'sticker':
-              return handleSticker(message, event.replyToken);
-            default:
-              throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-          }
+      switch (message.type) {
+        case 'text':
+          return handleText(message, event.replyToken, event.source);
+        case 'image':
+          return handleImage(message, event.replyToken, event.source);
+        case 'video':
+          return handleVideo(message, event.replyToken, event.source);
+        case 'audio':
+          return handleAudio(message, event.replyToken, event.source);
+        case 'location':
+          return handleLocation(message, event.replyToken, event.source);
+        case 'sticker':
+          return handleSticker(message, event.replyToken, event.source);
+        default:
+          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+      }
 
     case 'follow':
       return replyText(event.replyToken, 'Got followed event');
@@ -360,8 +360,6 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
-     var originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
-      var previewImageUrl =  baseURL + '/downloaded/' + path.basename(previewPath)
 
       return client.replyMessage(
         replyToken,
@@ -370,8 +368,9 @@ function handleVideo(message, replyToken) {
           // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
           // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
 
-          type: 'text',
-          text : 'success!!!!!!!!',
+          type: 'video',
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );
     });
