@@ -332,8 +332,12 @@ function handleImage(message, replyToken, source) {
                 return client.replyMessage(
                 replyToken,
                 { 
-                  type: 'text',
-                  text : 'id = '+dPath
+                  // type: 'text',
+                  // text : 'id = '+dPath
+
+                  type: 'image',
+                  originalContentUrl: dPath,
+                  previewImageUrl: pPath,
                   // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                   // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                 }
