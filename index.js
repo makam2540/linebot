@@ -97,7 +97,7 @@ function handleEvent(event) {
         case 'sticker':
           return handleSticker(message, event.replyToken, event.source);
         default:
-          throw new Error(`Unknown message: ${JSON.stringify("Unknown message")}`);
+          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       }
 
     case 'follow':
@@ -360,13 +360,18 @@ function handleVideo(message, replyToken) {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+     var originalContentUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+      var previewImageUrl =  baseURL + '/downloaded/' + path.basename(previewPath)
 
       return client.replyMessage(
         replyToken,
         {
-          type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          // type: 'video',
+          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+
+          type: 'text',
+          text : ''+originalContentUrl +'\n' +previewImageUrl,
         }
       );
     });
