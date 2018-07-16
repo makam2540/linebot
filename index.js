@@ -318,14 +318,14 @@ function handleImage(message, replyToken, source) {
                 
                 req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-                req.query('SELECT * FROM Image WHERE Image_id ='+message.id).then(function (result) 
+                req.query('SELECT * FROM Image WHERE ').then(function (result) 
                 {
                    
-                for(var i=0;i<rows.rowsAffected;i++){
-                  if(rows.recordset[i].Image_id == message.id)
+                for(var i=0;i<result.rowsAffected;i++){
+                  if(result.recordset[i].Image_id == message.id)
                   {
-                    var AdownloadPath = rows.recordset[i].oridinal;
-                    var ApreviewPath = rows.recordset[i].preview;
+                    var AdownloadPath = result.recordset[i].oridinal;
+                    var ApreviewPath = result.recordset[i].preview;
                   }
                 }
 
