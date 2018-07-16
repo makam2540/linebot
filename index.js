@@ -80,51 +80,61 @@ const replyText = (token, texts) => {
 
 // callback function to handle a single event
 function handleEvent(event) {
-  switch (event.type) {
-    case 'message':
-      const message = event.message;
-      switch (message.type) {
-        case 'text':
-          return handleText(message, event.replyToken, event.source);
-        case 'image':
-          return handleImage(message, event.replyToken, event.source);
-        case 'video':
-          return handleVideo(message, event.replyToken);
-        case 'audio':
-          return handleAudio(message, event.replyToken);
-        case 'location':
-          return handleLocation(message, event.replyToken);
-        case 'sticker':
-          return handleSticker(message, event.replyToken);
-        default:
-          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-      }
 
-    case 'follow':
-      return replyText(event.replyToken, 'Got followed event');
+  var type = event.message.type
+  return client.replyMessage(
+    replyToken,
+    {
+      type: 'text',
+      text : type
+    }
+  );
 
-    case 'unfollow':
-      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+  // switch (event.type) {
+  //   case 'message':
+  //     const message = event.message;
+  //     switch (message.type) {
+  //       case 'text':
+  //         return handleText(message, event.replyToken, event.source);
+  //       case 'image':
+  //         return handleImage(message, event.replyToken, event.source);
+  //       case 'video':
+  //         return handleVideo(message, event.replyToken);
+  //       case 'audio':
+  //         return handleAudio(message, event.replyToken);
+  //       case 'location':
+  //         return handleLocation(message, event.replyToken);
+  //       case 'sticker':
+  //         return handleSticker(message, event.replyToken);
+  //       default:
+  //         throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+  //     }
 
-    case 'join':
-      return replyText(event.replyToken, `Joined ${event.source.type}`);
+  //   case 'follow':
+  //     return replyText(event.replyToken, 'Got followed event');
 
-    case 'leave':
-      return console.log(`Left: ${JSON.stringify(event)}`);
+  //   case 'unfollow':
+  //     return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
 
-    case 'postback':
-      let data = event.postback.data;
-      if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-        data += `(${JSON.stringify(event.postback.params)})`;
-      }
-      return replyText(event.replyToken, `Got postback: ${data}`);
+  //   case 'join':
+  //     return replyText(event.replyToken, `Joined ${event.source.type}`);
 
-    case 'beacon':
-      return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+  //   case 'leave':
+  //     return console.log(`Left: ${JSON.stringify(event)}`);
 
-    default:
-      throw new Error(`Unknown event: ${JSON.stringify(event)}`);
-  }
+  //   case 'postback':
+  //     let data = event.postback.data;
+  //     if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
+  //       data += `(${JSON.stringify(event.postback.params)})`;
+  //     }
+  //     return replyText(event.replyToken, `Got postback: ${data}`);
+
+  //   case 'beacon':
+  //     return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+
+  //   default:
+  //     throw new Error(`Unknown event: ${JSON.stringify(event)}`);
+  // }
 }
 
 function handleText(message, replyToken, source) {
