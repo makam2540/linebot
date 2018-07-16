@@ -301,6 +301,7 @@ function handleImage(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
  
+  
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
@@ -323,7 +324,7 @@ function handleImage(message, replyToken, source) {
         replyToken,
         { 
           type: 'text',
-          text : ''+source.id 
+          text : ''+source.userId 
           // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
           // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
