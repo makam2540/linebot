@@ -136,8 +136,8 @@ function handleText(message, replyToken, source) {
           replyToken,
           {
             type: 'video',
-            originalContentUrl: 'https://youtu.be/d9_8RkSoXuE',
-            previewImageUrl: 'https://youtu.be/d9_8RkSoXuE',
+            originalContentUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
+            previewImageUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
           }
         );
     case 'profile':
