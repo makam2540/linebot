@@ -322,7 +322,7 @@ function handleImage(message, replyToken, source) {
               req.query('SELECT * FROM [dbo].[Image] ').then(function(r){
                 for(var i=0;i<r.rowsAffected;i++){
                     if(r.rowsAffected[i].oridinal = id1){
-                      AdownloadPath = rows.recordset[i].oridinal;
+                      AdownloadPath = r.recordset[i].oridinal;
                     }
                   }
                 return client.replyMessage(
