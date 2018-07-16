@@ -317,7 +317,8 @@ function handleImage(message, replyToken, source) {
       conn.connect(function(err) {
              var req = new sql.Request(conn); 
              
-               conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')",function(err,result){
+               conn.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')",function(err,result){
+                
                if (err) throw err;
                console.log(result);
              });
