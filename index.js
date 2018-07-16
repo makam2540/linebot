@@ -301,14 +301,14 @@ function handleImage(message, replyToken,source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
  
-  return downloadContent(message.id, downloadPath)
+  return downloadContent(message.id, downloadPath,source)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-      var original = baseURL + '/downloaded/' + path.basename(downloadPath)
-      var preview = baseURL + '/downloaded/' + path.basename(previewPath)
+      var original1 = baseURL + '/downloaded/' + path.basename(downloadPath)
+      var preview1 = baseURL + '/downloaded/' + path.basename(previewPath)
       var  UsID = source.userId
   
       // var conn = new sql.ConnectionPool(dbConfig);
