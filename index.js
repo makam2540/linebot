@@ -131,6 +131,15 @@ function handleText(message, replyToken, source) {
   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
 
   switch (message.text) {
+    case 'video':
+        return client.replyMessage(
+          replyToken,
+          {
+            type: 'video',
+            originalContentUrl: 'https://youtu.be/d9_8RkSoXuE',
+            previewImageUrl: 'https://youtu.be/d9_8RkSoXuE',
+          }
+        );
     case 'profile':
       if (source.userId) {
         return client.getProfile(source.userId)
