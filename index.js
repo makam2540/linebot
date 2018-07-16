@@ -318,22 +318,22 @@ function handleImage(message, replyToken, source) {
                 
                 req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-                // req.query('SELECT * FROM Image WHERE Image_id ='+message.id).then(function (result) 
-                // {
+                req.query('SELECT * FROM Image WHERE Image_id ='+message.id).then(function (result) 
+                {
                    
-                // for(var i=0;i<rows.rowsAffected;i++){
-                //   if(rows.recordset[i].Image_id == message.id)
-                //   {
-                //     var AdownloadPath = rows.recordset[i].oridinal;
-                //     var ApreviewPath = rows.recordset[i].preview;
-                //   }
-                // }
+                for(var i=0;i<rows.rowsAffected;i++){
+                  if(rows.recordset[i].Image_id == message.id)
+                  {
+                    var AdownloadPath = rows.recordset[i].oridinal;
+                    var ApreviewPath = rows.recordset[i].preview;
+                  }
+                }
 
                 return client.replyMessage(
                 replyToken,
                 { 
                   type: 'text',
-                  text : 'id = '+Uid
+                  text : 'id = '+AdownloadPath
                   // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
                   // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
                 }
