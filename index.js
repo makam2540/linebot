@@ -356,7 +356,7 @@ function handleVideo(message, replyToken) {
   const previewPath1 = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
   return downloadContent(message.id, downloadPath1)
-    .then((downloadPath) => {
+    .then((downloadPath1) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
       cp.execSync(`convert mp4:${downloadPath1}[0] jpeg:${previewPath1}`);
