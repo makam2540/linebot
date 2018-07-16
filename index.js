@@ -362,9 +362,10 @@ function handleImage(message, replyToken, source) {
  
   //  });// end query
     
-});  //end connect
+ });  //end connect
  
     }); // then((downloadPath)
+  })
 }  // end function
 
 
