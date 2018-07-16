@@ -5,7 +5,6 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
-
 var bodyParser = require('body-parser')
 var request = require('request')
 var sql = require('mssql')
@@ -310,15 +309,15 @@ function handleImage(message, replyToken) {
 
       var original = baseURL + '/downloaded/' + path.basename(downloadPath)
       var preview = baseURL + '/downloaded/' + path.basename(previewPath)
-      // var a = source.userId
+      var aaaaaa = source.userId
 
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect(function(err) {
       //        var req = new sql.Request(conn); 
              
-      //        conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview], [user_id] ) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','" + user_id + "')", function (err, result){
+      //        conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview], [user_id] ) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','" + user_id + "')", function (err, result)
              
-      //       })   // end query
+      //          // end query
       //     })  //end connect
           
         return client.replyMessage(
