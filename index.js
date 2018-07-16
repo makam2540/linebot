@@ -301,7 +301,7 @@ function handleImage(message, replyToken) {
 
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
   const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
-
+  var a = source.userId
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
@@ -311,7 +311,7 @@ function handleImage(message, replyToken) {
 
       var original = baseURL + '/downloaded/' + path.basename(downloadPath)
       var preview = baseURL + '/downloaded/' + path.basename(previewPath)
-      var a = source.userId
+      // var a = source.userId
 
       // var conn = new sql.ConnectionPool(dbConfig);
       // conn.connect(function(err) {
