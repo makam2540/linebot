@@ -319,9 +319,7 @@ function handleImage(message, replyToken, source) {
              
                conn.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')",function(err,result){
                 
-               if (err) throw err;
-               console.log(result);
-            //end connect
+           
           
         return client.replyMessage(
         replyToken,
@@ -333,9 +331,9 @@ function handleImage(message, replyToken, source) {
         }
       );  //end replyMessage
  
-    });
-    // end query
-}) 
+    });// end query
+    
+})  //end connect
  
     }); // then((downloadPath)
 }  // end function
