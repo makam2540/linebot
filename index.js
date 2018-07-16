@@ -89,15 +89,15 @@ function handleEvent(event) {
         case 'image':
           return handleImage(message, event.replyToken, event.source);
         case 'video':
-          return handleVideo(message, event.replyToken);
+          return handleVideo(message, event.replyToken, event.source);
         case 'audio':
-          return handleAudio(message, event.replyToken);
+          return handleAudio(message, event.replyToken, event.source);
         case 'location':
-          return handleLocation(message, event.replyToken);
+          return handleLocation(message, event.replyToken, event.source);
         case 'sticker':
-          return handleSticker(message, event.replyToken);
+          return handleSticker(message, event.replyToken, event.source);
         default:
-          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+          throw new Error(`Unknown message: ${JSON.stringify("Unknown message")}`);
       }
 
     case 'follow':
@@ -312,40 +312,38 @@ function handleImage(message, replyToken, source) {
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
      
-      var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect().then(function() {
-             var req = new sql.Request(conn); 
-                
-                req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
+        var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
+                  
+                req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-                req.query('SELECT * FROM Image ').then(function (result) 
-                {
-                   
-                for(var i=0;i<result.rowsAffected;i++){
-                  if(result.recordset[i].Image_id == message.id)
-                  {
-                    var dPath = result.recordset[i].oridinal;
-                    var pPath = result.recordset[i].preview;
-                  }
-                }
+                req.query('SELECT * FROM Image').then(function (result){
+                      for(var i=0;i<result.rowsAffected;i++){
+                        if(result.recordset[i].Image_id == message.id)
+                        {
+                          var dPath = result.recordset[i].oridinal;
+                          var pPath = result.recordset[i].preview;
+                        }
+                      }
 
-                return client.replyMessage(
-                replyToken,
-                { 
-                  // type: 'text',
-                  // text : 'id = '+dPath
+                      return client.replyMessage(
+                      replyToken,
+                      { 
+                        // type: 'text',
+                        // text : 'id = '+dPath
 
-                  type: 'image',
-                  originalContentUrl: dPath,
-                  previewImageUrl: pPath,
-                  // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                  // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-                }
-              );  //end replyMessage
+                        type: 'image',
+                        originalContentUrl: dPath,
+                        previewImageUrl: pPath,
+                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                      }
+                    );  //end replyMessage
  
-    })// end query
+                })// end query select
     
-});  //end connect
+        });  //end connect
  
     }); // then((downloadPath)
 }  // end function
