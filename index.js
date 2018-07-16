@@ -312,6 +312,7 @@ function handleImage(message, replyToken, source) {
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
       var id1 = 'https://nodejs-bot12.herokuapp.com/downloaded/8258014663028.jpg'
+      var AdownloadPath
   
       var conn = new sql.ConnectionPool(dbConfig);
       conn.connect.then(function() {
@@ -321,27 +322,18 @@ function handleImage(message, replyToken, source) {
               req.query('SELECT * FROM [dbo].[Image] ').then(function(r){
                 for(var i=0;i<r.rowsAffected;i++){
                     if(r.rowsAffected[i].oridinal = id1){
-                      return client.replyMessage(
-                        replyToken,
-                        { 
-                          type: 'text',
-                          text : 'id = '+Uid +'\n '+original+'\n'+preview+'\n'+message.id
-                          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-                        }
-                      );  //end replyMessage
-
+                      AdownloadPath = rows.recordset[i].oridinal;
                     }
                   }
-              //   return client.replyMessage(
-              //   replyToken,
-              //   { 
-              //     type: 'text',
-              //     text : 'id = '+Uid +'\n '+original+'\n'+preview+'\n'+message.id
-              //     // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              //     // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-              //   }
-              // );  //end replyMessage
+                return client.replyMessage(
+                replyToken,
+                { 
+                  type: 'text',
+                  text : 'id = '+AdownloadPath
+                  // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                  // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                }
+              );  //end replyMessage
  
     });// end query
     
