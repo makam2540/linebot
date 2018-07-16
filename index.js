@@ -325,6 +325,7 @@ function handleImage(message, replyToken, source) {
                       AdownloadPath = r.recordset[i].oridinal;
                     }
                   }
+
                 return client.replyMessage(
                 replyToken,
                 { 
@@ -335,7 +336,7 @@ function handleImage(message, replyToken, source) {
                 }
               );  //end replyMessage
  
-    });// end query
+    })// end query
     
 });  //end connect
  
