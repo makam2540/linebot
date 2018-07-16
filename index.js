@@ -309,16 +309,15 @@ function handleImage(message, replyToken) {
 
       var original = baseURL + '/downloaded/' + path.basename(downloadPath)
       var preview = baseURL + '/downloaded/' + path.basename(previewPath)
-      var aaaaaa = source.userId
-
-      // var conn = new sql.ConnectionPool(dbConfig);
-      // conn.connect(function(err) {
-      //        var req = new sql.Request(conn); 
+  
+      var conn = new sql.ConnectionPool(dbConfig);
+      conn.connect(function(err) {
+             var req = new sql.Request(conn); 
              
-      //        conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview], [user_id] ) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','" + user_id + "')", function (err, result)
+             conn.query("INSERT INTO [dbo].[Image] ([Image_id], [original], [preview],) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"')")
              
-      //          // end query
-      //     })  //end connect
+               // end query
+          })  //end connect
           
         return client.replyMessage(
         replyToken,
