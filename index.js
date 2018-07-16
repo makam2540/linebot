@@ -87,7 +87,7 @@ function handleEvent(event) {
         case 'text':
           return handleText(message, event.replyToken, event.source);
         case 'image':
-          return handleImage(message, event.replyToken, source);
+          return handleImage(message, event.replyToken, event.source);
         case 'video':
           return handleVideo(message, event.replyToken);
         case 'audio':
