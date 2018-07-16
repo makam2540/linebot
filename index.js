@@ -321,9 +321,7 @@ function handleImage(message, replyToken, source) {
                 
                if (err) throw err;
                console.log(result);
-             });
-               // end query
-          })  //end connect
+            //end connect
           
         return client.replyMessage(
         replyToken,
@@ -335,6 +333,9 @@ function handleImage(message, replyToken, source) {
         }
       );  //end replyMessage
  
+    });
+    // end query
+}) 
  
     }); // then((downloadPath)
 }  // end function
