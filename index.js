@@ -311,20 +311,25 @@ function handleImage(message, replyToken, source) {
       var original = baseURL + '/downloaded/' + path.basename(downloadPath);
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
-      var id1 = 'https://nodejs-bot12.herokuapp.com/downloaded/8258014663028.jpg'
-      var AdownloadPath
+     
+ 
+     
+
   
       var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect.then(function() {
+      conn.connect().then(function() {
              var req = new sql.Request(conn); 
-              //  req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
+   req.query("INSERT INTO [dbo].[Image] ([Image_id],[oridinal],[preview],[user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-              req.query('SELECT * FROM [dbo].[Image] ').then(function(r){
-                for(var i=0;i<r.rowsAffected;i++){
-                    if(r.rowsAffected[i].oridinal = id1){
-                      AdownloadPath = r.recordset[i].oridinal;
-                    }
+                req.query('SELECT * FROM Image').then(function (rows) 
+                {
+                for(var i=0;i<rows.rowsAffected;i++){
+                  if(rows.recordset[i].Image_id == message.id)
+                  {
+                    var AdownloadPath = rows.recordset[i].oridinal;
+                    var ApreviewPath = rows.recordset[i].preview;
                   }
+                }
 
                 return client.replyMessage(
                 replyToken,
