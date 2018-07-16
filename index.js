@@ -78,32 +78,33 @@ const replyText = (token, texts) => {
   );
 };
 
-// callback function to handle a single event
+
 function handleEvent(event) {
+  const a = event.message.type;
+  return client.replyMessage(
+    replyToken,
+    {
+      type: 'text',
+      text : a
+    }
+  );
+}
+
+
+
+
+// callback function to handle a single event
+function handleEvent1(event) {
   switch (event.type) {
     case 'message':
       const message = event.message;
       switch (message.type) {
         case 'text':
-         // return handleText(message, event.replyToken, event.source);
-          return client.replyMessage(
-            replyToken,
-            {
-              type: 'text',
-              text : 'message.type'
-            }
-          );
+          return handleText(message, event.replyToken, event.source);
         case 'image':
           return handleImage(message, event.replyToken, event.source);
         case 'video':
-         // return handleVideo(message, event.replyToken);
-          return client.replyMessage(
-            replyToken,
-            {
-              type: 'text',
-              text : message.type
-            }
-          );
+         return handleVideo(message, event.replyToken);
         case 'audio':
           return handleAudio(message, event.replyToken);
         case 'location':
@@ -152,15 +153,6 @@ function handleText(message, replyToken, source) {
   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
 
   switch (message.text) {
-    // case 'video':
-    //     return client.replyMessage(
-    //       replyToken,
-    //       {
-    //         type: 'video',
-    //         originalContentUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
-    //         previewImageUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
-    //       }
-    //     );
     case 'profile':
       if (source.userId) {
         return client.getProfile(source.userId)
