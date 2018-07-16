@@ -86,10 +86,24 @@ function handleEvent(event) {
       switch (message.type) {
         case 'text':
           return handleText(message, event.replyToken, event.source);
+          return client.replyMessage(
+            replyToken,
+            {
+              type: 'text',
+              text : message.type
+            }
+          );
         case 'image':
           return handleImage(message, event.replyToken, event.source);
         case 'video':
           return handleVideo(message, event.replyToken);
+          return client.replyMessage(
+            replyToken,
+            {
+              type: 'text',
+              text : message.type
+            }
+          );
         case 'audio':
           return handleAudio(message, event.replyToken);
         case 'location':
@@ -98,6 +112,13 @@ function handleEvent(event) {
           return handleSticker(message, event.replyToken);
         default:
           throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+        return client.replyMessage(
+          replyToken,
+          {
+            type: 'text',
+            text : message.type
+          }
+        );
       }
 
     case 'follow':
@@ -131,15 +152,15 @@ function handleText(message, replyToken, source) {
   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
 
   switch (message.text) {
-    case 'video':
-        return client.replyMessage(
-          replyToken,
-          {
-            type: 'video',
-            originalContentUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
-            previewImageUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
-          }
-        );
+    // case 'video':
+    //     return client.replyMessage(
+    //       replyToken,
+    //       {
+    //         type: 'video',
+    //         originalContentUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
+    //         previewImageUrl: 'https://www.facebook.com/ProSaharath/videos/1669039036478863/?t=11',
+    //       }
+    //     );
     case 'profile':
       if (source.userId) {
         return client.getProfile(source.userId)
