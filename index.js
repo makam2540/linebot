@@ -314,24 +314,23 @@ function handleImage(message, replyToken, source) {
 
   
       var conn = new sql.ConnectionPool(dbConfig);
-      conn.connect.then(function(err) {
+      conn.connect.then(function() {
              var req = new sql.Request(conn); 
-               req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')");
+               req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
                
-
-        return client.replyMessage(
-        replyToken,
-        { 
-          type: 'text',
-          text : 'id = '+Uid +'\n '+original+'\n'+preview+'\n'+message.id
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-        }
-      );  //end replyMessage
+                return client.replyMessage(
+                replyToken,
+                { 
+                  type: 'text',
+                  text : 'id = '+Uid +'\n '+original+'\n'+preview+'\n'+message.id
+                  // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                  // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                }
+              );  //end replyMessage
  
   //  });// end query
     
-})  //end connect
+});  //end connect
  
     }); // then((downloadPath)
 }  // end function
