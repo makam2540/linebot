@@ -308,9 +308,9 @@ function handleImage(message, replyToken, source) {
       // Please consider about security and performance by yourself
       cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
-      var original = baseURL + '/downloaded/' + path.basename(downloadPath);
-      var preview = baseURL + '/downloaded/' + path.basename(previewPath);
-      var Uid = source.userId
+      // var original = baseURL + '/downloaded/' + path.basename(downloadPath);
+      // var preview = baseURL + '/downloaded/' + path.basename(previewPath);
+      // var Uid = source.userId
      
         // var conn = new sql.ConnectionPool(dbConfig);
         // conn.connect().then(function() {
@@ -341,9 +341,9 @@ function handleImage(message, replyToken, source) {
                       }
                     );  //end replyMessage
  
-                })// end query select
+        //         })// end query select
     
-        });  //end connect
+        // });  //end connect
  
     }); // then((downloadPath)
 }  // end function
