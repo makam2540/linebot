@@ -83,28 +83,28 @@ function handleEvent(event) {
   switch (event.type) {
     case 'message':
       const message = event.message;
-      switch (message.type) {
-        case 'text':
-          return handleText(message, event.replyToken, event.source);
-        case 'image':
-          return handleImage(message, event.replyToken, event.source);
-        case 'video':
-          return handleVideo(message, event.replyToken, event.source);
-        case 'audio':
-          return handleAudio(message, event.replyToken, event.source);
-        case 'location':
-          return handleLocation(message, event.replyToken, event.source);
-        case 'sticker':
-          return handleSticker(message, event.replyToken, event.source);
-        default:
-          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-      }
+          switch (message.type) {
+            case 'text':
+              return handleText(message, event.replyToken, event.source);
+            case 'image':
+              return handleImage(message, event.replyToken, event.source);
+            case 'video':
+              return handleVideo(message, event.replyToken, event.source);
+            case 'audio':
+              return handleAudio(message, event.replyToken, event.source);
+            case 'location':
+              return handleLocation(message, event.replyToken, event.source);
+            case 'sticker':
+              return handleSticker(message, event.replyToken, event.source);
+            default:
+              throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+          }
 
     case 'follow':
       return replyText(event.replyToken, 'Got followed event');
 
     case 'unfollow':
-      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+      return console.log(`Unfollowed this bot: ${JSON.stringify("Unfollowed")}`);
 
     case 'join':
       return replyText(event.replyToken, `Joined ${event.source.type}`);
