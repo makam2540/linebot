@@ -83,56 +83,48 @@ function handleEvent(event) {
   switch (event.type) {
     case 'message':
       const message = event.message;
-     
-      return client.replyMessage(
-        replyToken,
-        { 
-          type: 'text',
-          text :  message.type
-        }
-      ); 
-      // switch (message.type) {
-      //   case 'text':
-      //     return handleText(message, event.replyToken, event.source);
-      //   case 'image':
-      //     return handleImage(message, event.replyToken, event.source);
-      //   case 'video':
-      //    return handleVideo(message, event.replyToken);
-      //   case 'audio':
-      //     return handleAudio(message, event.replyToken);
-      //   case 'location':
-      //     return handleLocation(message, event.replyToken);
-      //   case 'sticker':
-      //     return handleSticker(message, event.replyToken);
-      //   default:
-      //     throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-      // }
+      switch (message.type) {
+        case 'text':
+          return handleText(message, event.replyToken, event.source);
+        case 'image':
+          return handleImage(message, event.replyToken, event.source);
+        case 'video':
+         return handleVideo(message, event.replyToken);
+        case 'audio':
+          return handleAudio(message, event.replyToken);
+        case 'location':
+          return handleLocation(message, event.replyToken);
+        case 'sticker':
+          return handleSticker(message, event.replyToken);
+        default:
+          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+      }
 
-  //   case 'follow':
-  //     return replyText(event.replyToken, 'Got followed event');
+    case 'follow':
+      return replyText(event.replyToken, 'Got followed event');
 
-  //   case 'unfollow':
-  //     return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+    case 'unfollow':
+      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
 
-  //   case 'join':
-  //     return replyText(event.replyToken, `Joined ${event.source.type}`);
+    case 'join':
+      return replyText(event.replyToken, `Joined ${event.source.type}`);
 
-  //   case 'leave':
-  //     return console.log(`Left: ${JSON.stringify(event)}`);
+    case 'leave':
+      return console.log(`Left: ${JSON.stringify(event)}`);
 
-  //   case 'postback':
-  //     let data = event.postback.data;
-  //     if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-  //       data += `(${JSON.stringify(event.postback.params)})`;
-  //     }
-  //     return replyText(event.replyToken, `Got postback: ${data}`);
+    case 'postback':
+      let data = event.postback.data;
+      if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
+        data += `(${JSON.stringify(event.postback.params)})`;
+      }
+      return replyText(event.replyToken, `Got postback: ${data}`);
 
-  //   case 'beacon':
-  //     return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+    case 'beacon':
+      return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
 
-  //   default:
-  //     throw new Error(`Unknown event: ${JSON.stringify(event)}`);
-  // }
+    default:
+      throw new Error(`Unknown event: ${JSON.stringify(event)}`);
+  }
 }
 
 function handleText(message, replyToken, source) {
@@ -298,7 +290,7 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
-      console.log(`Echo message to ${replyToken}: ${message.text}`);
+      console.log(`Echo message to ${replyToken}: ${message.text}='what?'`);
       return replyText(replyToken, message.text);
   }
 }
