@@ -363,13 +363,13 @@ function handleImage(message, replyToken, source) {
 
 function handleVideo(message, replyToken, source) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.png`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.mp4`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.exec(`convert mp4:${downloadPath}[0] png:${previewPath}`);
+      cp.exec(`convert mp4:${downloadPath}[0] mp4:${previewPath}`);
           var original = baseURL + '/downloaded/' + path.basename(downloadPath)
           var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
