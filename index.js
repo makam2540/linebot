@@ -301,7 +301,7 @@ function handleText(message, replyToken, source) {
       );
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
-      return replyText(replyToken, message.text);
+      return replyText(replyToken, "message.text");
   }
 }
 
@@ -369,7 +369,7 @@ function handleVideo(message, replyToken, source) {
     .then((downloadPath1) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.execSync(`convert -resize 240x mp4:${downloadPath1}[0] jpeg:${previewPath1}`);
+      cp.execSync(`convert mp4:${downloadPath1}[0] jpeg:${previewPath1}`);
 
       return client.replyMessage(
         replyToken,
