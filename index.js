@@ -369,7 +369,7 @@ function handleVideo(message, replyToken, source) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.exec(`convert mp4:${downloadPath} jpeg:${previewPath}`);
+      cp.execSync(`convert mp4:${downloadPath} jpeg:${previewPath}`);
           var original = baseURL + '/downloaded/' + path.basename(downloadPath)
           var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
