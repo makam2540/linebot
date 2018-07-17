@@ -84,22 +84,29 @@ function handleEvent(event) {
     case 'message':
       const message = event.message;
      
-      switch (message.type) {
-        case 'text':
-          return handleText(message, event.replyToken, event.source);
-        case 'image':
-          return handleImage(message, event.replyToken, event.source);
-        case 'video':
-         return handleVideo(message, event.replyToken);
-        case 'audio':
-          return handleAudio(message, event.replyToken);
-        case 'location':
-          return handleLocation(message, event.replyToken);
-        case 'sticker':
-          return handleSticker(message, event.replyToken);
-        default:
-          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-      }
+      return client.replyMessage(
+        replyToken,
+        { 
+          type: 'text',
+          text :  message.type
+        }
+      ); 
+      // switch (message.type) {
+      //   case 'text':
+      //     return handleText(message, event.replyToken, event.source);
+      //   case 'image':
+      //     return handleImage(message, event.replyToken, event.source);
+      //   case 'video':
+      //    return handleVideo(message, event.replyToken);
+      //   case 'audio':
+      //     return handleAudio(message, event.replyToken);
+      //   case 'location':
+      //     return handleLocation(message, event.replyToken);
+      //   case 'sticker':
+      //     return handleSticker(message, event.replyToken);
+      //   default:
+      //     throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+      // }
 
     case 'follow':
       return replyText(event.replyToken, 'Got followed event');
@@ -439,3 +446,4 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
+
