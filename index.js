@@ -108,31 +108,31 @@ function handleEvent(event) {
       //     throw new Error(`Unknown message: ${JSON.stringify(message)}`);
       // }
 
-    case 'follow':
-      return replyText(event.replyToken, 'Got followed event');
+  //   case 'follow':
+  //     return replyText(event.replyToken, 'Got followed event');
 
-    case 'unfollow':
-      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+  //   case 'unfollow':
+  //     return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
 
-    case 'join':
-      return replyText(event.replyToken, `Joined ${event.source.type}`);
+  //   case 'join':
+  //     return replyText(event.replyToken, `Joined ${event.source.type}`);
 
-    case 'leave':
-      return console.log(`Left: ${JSON.stringify(event)}`);
+  //   case 'leave':
+  //     return console.log(`Left: ${JSON.stringify(event)}`);
 
-    case 'postback':
-      let data = event.postback.data;
-      if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-        data += `(${JSON.stringify(event.postback.params)})`;
-      }
-      return replyText(event.replyToken, `Got postback: ${data}`);
+  //   case 'postback':
+  //     let data = event.postback.data;
+  //     if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
+  //       data += `(${JSON.stringify(event.postback.params)})`;
+  //     }
+  //     return replyText(event.replyToken, `Got postback: ${data}`);
 
-    case 'beacon':
-      return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+  //   case 'beacon':
+  //     return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
 
-    default:
-      throw new Error(`Unknown event: ${JSON.stringify(event)}`);
-  }
+  //   default:
+  //     throw new Error(`Unknown event: ${JSON.stringify(event)}`);
+  // }
 }
 
 function handleText(message, replyToken, source) {
@@ -446,4 +446,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
-
