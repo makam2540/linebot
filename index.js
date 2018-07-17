@@ -290,7 +290,7 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
     default:
-      console.log(`Echo message to ${replyToken}: ${message.text}='what?'`);
+      console.log(`Echo message to ${replyToken}: ${message.text}="what?"`);
       return replyText(replyToken, message.text);
   }
 }
