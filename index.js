@@ -374,13 +374,13 @@ function handleVideo(message, replyToken, source) {
       return client.replyMessage(
         replyToken,
         {
-          type: 'video',
-          originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
-          previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
-
           // type: 'video',
-          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
-          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath1),
+          // originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
+          // previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
+
+          type: 'video',
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath1),
         }
       );
     });
