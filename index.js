@@ -362,14 +362,14 @@ function handleImage(message, replyToken, source) {
 
 
 function handleVideo(message, replyToken, source) {
-  const downloadPath1 = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
-  const previewPath1 = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
-  return downloadContent(message.id, downloadPath1)
-    .then((downloadPath1) => {
+  return downloadContent(message.id, downloadPath)
+    .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.exec(`convert mp4:${downloadPath1}[0] jpeg:${previewPath1}`);
+      cp.execSync(`convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
 
       return client.replyMessage(
         replyToken,
@@ -379,8 +379,8 @@ function handleVideo(message, replyToken, source) {
           // previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
 
           type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath1),
+          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );
     });
