@@ -370,7 +370,7 @@ function handleVideo(message, replyToken, source) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.exec(`ffmpeg.convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+     // cp.exec(`ffmpeg.convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
           var original = baseURL + '/downloaded/' + path.basename(downloadPath)
           var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
@@ -378,7 +378,7 @@ function handleVideo(message, replyToken, source) {
         replyToken,
         {
           type: 'text',
-          text : original +'\n'+ preview
+          text : original +'\n\n'+ preview
           // originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
           // previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
 
