@@ -83,23 +83,23 @@ function handleEvent(event) {
   switch (event.type) {
     case 'message':
       const message = event.message;
-      return replyText(event.replyToken, message.type);
-      // switch (message.type) {
-      //   case 'text':
-      //     return handleText(message, event.replyToken, event.source);
-      //   case 'image':
-      //     return handleImage(message, event.replyToken, event.source);
-      //   case 'video':
-      //    return handleVideo(message, event.replyToken, event.source);
-      //   case 'audio':
-      //     return handleAudio(message, event.replyToken);
-      //   case 'location':
-      //     return handleLocation(message, event.replyToken);
-      //   case 'sticker':
-      //     return handleSticker(message, event.replyToken);
-      //   default:
-      //     throw new Error(`Unknown message: ${JSON.stringify(message)}`);
-      // }
+      // return replyText(event.replyToken, message.type);
+      switch (message.type) {
+        case 'text':
+          return handleText(message, event.replyToken, event.source);
+        case 'image':
+          return handleImage(message, event.replyToken, event.source);
+        case 'video':
+         return handleVideo(message, event.replyToken, event.source);
+        case 'audio':
+          return handleAudio(message, event.replyToken);
+        case 'location':
+          return handleLocation(message, event.replyToken);
+        case 'sticker':
+          return handleSticker(message, event.replyToken);
+        default:
+          throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+      }
 
     case 'follow':
       return replyText(event.replyToken, 'Got followed event');
@@ -290,6 +290,15 @@ function handleText(message, replyToken, source) {
           return replyText(replyToken, 'Leaving room')
             .then(() => client.leaveRoom(source.roomId));
       }
+      case 'video':
+      return client.replyMessage(
+        replyToken,
+        {
+          type: 'video',
+          originalContentUrl: 'https://youtu.be/bL9IJkGrOGY',
+          previewImageUrl: 'https://youtu.be/bL9IJkGrOGY',
+        }
+      );
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
       return replyText(replyToken, message.text);
@@ -352,7 +361,7 @@ function handleImage(message, replyToken, source) {
 
 
 
-function handleVideo(message, replyToken) {
+function handleVideo(message, replyToken, source) {
   const downloadPath1 = path.join(__dirname, 'downloaded', `${message.id}.mp4`);
   const previewPath1 = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
 
