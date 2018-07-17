@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var sql = require('mssql')
 var sqlInstance = require("mssql")
-var ffmpeg = require("ffmpeg")
+var ffmpeg = require("fluent-ffmpeg")
 
 // var port = process.env.PORT || 7777;
 // // parse application/json
@@ -370,7 +370,7 @@ function handleVideo(message, replyToken, source) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.execSync(`ffmpeg.convert mp4:${downloadPath} jpeg:${previewPath}`);
+      cp.exec(`ffmpeg.convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
           var original = baseURL + '/downloaded/' + path.basename(downloadPath)
           var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
