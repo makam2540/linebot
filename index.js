@@ -295,8 +295,8 @@ function handleText(message, replyToken, source) {
         replyToken,
         {
           type: 'video',
-          originalContentUrl: 'https://youtu.be/bL9IJkGrOGY',
-          previewImageUrl: 'https://youtu.be/bL9IJkGrOGY',
+          originalContentUrl: 'https://twitter.com/i/status/1015920397567516679',
+          previewImageUrl: 'https://twitter.com/i/status/1015920397567516679',
         }
       );
     default:
