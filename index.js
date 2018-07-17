@@ -295,8 +295,8 @@ function handleText(message, replyToken, source) {
         replyToken,
         {
           type: 'video',
-          originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
-          previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
+          originalContentUrl: 'https://youtu.be/ymA0O09KIxQ?t=4',
+          previewImageUrl: 'https://youtu.be/ymA0O09KIxQ?t=4',
         }
       );
     default:
