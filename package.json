@@ -14,6 +14,7 @@
     "fs": "0.0.1-security",
     "mssql": "^4.1.0",
     "ffmpeg": "0.0.4",
+    "fluent-ffmpeg": "^2.1.2",
     "request": "^2.87.0"
   }
 }
