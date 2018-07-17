@@ -295,8 +295,8 @@ function handleText(message, replyToken, source) {
         replyToken,
         {
           type: 'video',
-          originalContentUrl: 'https://twitter.com/i/status/1015920397567516679',
-          previewImageUrl: 'https://twitter.com/i/status/1015920397567516679',
+          originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
+          previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
         }
       );
     default:
@@ -375,8 +375,8 @@ function handleVideo(message, replyToken, source) {
         replyToken,
         {
           type: 'video',
-          originalContentUrl: 'https://youtu.be/bL9IJkGrOGY',
-          previewImageUrl: 'https://youtu.be/bL9IJkGrOGY',
+          originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
+          previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
 
           // type: 'video',
           // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath1),
