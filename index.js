@@ -377,7 +377,7 @@ function handleVideo(message, replyToken, source) {
         replyToken,
         {
           type: 'text',
-          text : original
+          text : original +'\n'+ preview
           // originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
           // previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
 
