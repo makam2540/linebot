@@ -401,7 +401,7 @@ function handleAudio(message, replyToken) {
       
       getDuration(downloadPath)
         .then((duration) => { audioDuration = duration; })
-        .catch((error) => { audioDuration = 1; })
+        // .catch((error) => { audioDuration = 1; })
         .finally(() => {
 
           return client.replyMessage(
