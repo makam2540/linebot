@@ -395,13 +395,13 @@ function handleAudio(message, replyToken) {
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-      // var getDuration = require("get-audio-duration");
+      var getDuration = require("get-audio-duration");
       var audioDuration;
       
       getDuration(downloadPath)
-        .then((duration) => { audioDuration = duration; })
-        .catch((error) => { audioDuration = 1; })
-        .finally(() => {
+        // .then((duration) => { audioDuration = duration; })
+        // .catch((error) => { audioDuration = 1; })
+        // .finally(() => {
 
           return client.replyMessage(
             replyToken,
