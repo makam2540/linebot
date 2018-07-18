@@ -292,13 +292,13 @@ function handleText(message, replyToken, source) {
           return replyText(replyToken, 'Leaving room')
             .then(() => client.leaveRoom(source.roomId));
       }
-      case 'video':
+      case 'audio':
       return client.replyMessage(
         replyToken,
         {
-          type: 'video',
-          originalContentUrl: 'https://youtu.be/ymA0O09KIxQ?t=4',
-          previewImageUrl: 'https://youtu.be/ymA0O09KIxQ?t=4',
+          type: 'audio',
+          originalContentUrl: 'https://cdn.fbsbx.com/v/t59.3654-21/37252581_1735688046499565_8691086930156191744_n.m4a/_39084165.m4a?_nc_cat=0&oh=d0154f409b2f290e4319fa8c69e64304&oe=5B50E3A8&dl=1',
+          duration: 6000
         }
       );
     default:
