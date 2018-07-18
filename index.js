@@ -10,7 +10,7 @@ var request = require('request');
 var sql = require('mssql');
 var sqlInstance = require("mssql");
 var ffmpeg = require("ffmpeg");
-var getDuration = require("get-audio-duration");
+// var getDuration = require("get-audio-duration");
 
 // var port = process.env.PORT || 7777;
 // // parse application/json
@@ -396,7 +396,7 @@ function handleAudio(message, replyToken) {
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-      // var getDuration = require("get-audio-duration");
+      var getDuration = require("get-audio-duration");
       var audioDuration = 1;
       
       getDuration(downloadPath)
