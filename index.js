@@ -394,38 +394,63 @@ function handleVideo(message, replyToken, source) {
     });
 }
 
+
 function handleAudio(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
-  var getDuration = require('get-audio-duration');
-  return downloadContent(message.id, downloadPath)
-    // .then((downloadPath) => {
-     
-      var audioDuration ;
-      
-      getDuration('/app/downloaded/8281544352601.m4').then(function (duration) {
-        
-      // getDuration('/app/downloaded/8281544352601.m4')
-      //    .then((duration) => { audioDuration = duration})
-      //   .catch((error) => { audioDuration = 1; })
-      //   .finally(() => {
 
+  return downloadContent(message.id, downloadPath)
+    .then((downloadPath) => {
+      var getDuration = require('get-audio-duration');
+      var audioDuration;
+      getDuration(downloadPath)
+        .then((duration) => { audioDuration = duration; })
+        .catch((error) => { audioDuration = 1; })
+        .finally(() => {
           return client.replyMessage(
             replyToken,
             {
-
-              type: 'text',
-              text : '!!!!!!!!!=='+duration ,
-
-              // type: 'audio',
-              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              // // duration: 6000
-              // duration: duration * 1000,
+              type: 'audio',
+              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+              duration: audioDuration * 1000,
             }
           );
-        // }) // end getา
-        // });  //end finally()
+        });
     });
 }
+
+
+// function handleAudio(message, replyToken) {
+//   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
+//   var getDuration = require('get-audio-duration');
+//   return downloadContent(message.id, downloadPath)
+//     // .then((downloadPath) => {
+     
+//       var audioDuration ;
+      
+//       getDuration('/app/downloaded/8281544352601.m4').then(function (duration) {
+        
+//       // getDuration('/app/downloaded/8281544352601.m4')
+//       //    .then((duration) => { audioDuration = duration})
+//       //   .catch((error) => { audioDuration = 1; })
+//       //   .finally(() => {
+
+//           return client.replyMessage(
+//             replyToken,
+//             {
+
+//               type: 'text',
+//               text : '!!!!!!!!!=='+duration ,
+
+//               // type: 'audio',
+//               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+//               // // duration: 6000
+//               // duration: duration * 1000,
+//             }
+//           );
+//         // }) // end getา
+//         // });  //end finally()
+//     });
+// }
 
 function downloadContent(messageId, downloadPath) {
   return client.getMessageContent(messageId)
