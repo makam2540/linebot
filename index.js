@@ -432,7 +432,7 @@ function handleAudio(message, replyToken) {
       
       // getDuration(downloadPath).then(function (duration) {
         
-      getDuration('/app/downloaded/8281544352601.m4')
+      getDuration(downloadPath)
          .then((duration) => { audioDuration = duration})
         .catch((error) => { audioDuration = 1; })
         .finally(() => {
