@@ -400,7 +400,7 @@ function handleAudio(message, replyToken) {
       var audioDuration ;
       
       getDuration(downloadPath)
-        .then((getDuration) => { audioDuration = getDuration})
+        .then((getDuration) => { audioDuration = duration})
         // .catch((error) => { audioDuration = 1; })
         // .finally(() => {
 
