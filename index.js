@@ -399,17 +399,17 @@ function handleAudio(message, replyToken) {
       // var getDuration = require("get-audio-duration");
       var audioDuration;
       
-      getDuration(downloadPath)
-        .then((duration) => { audioDuration = duration; })
-        .catch((error) => { audioDuration = 1; })
-        .finally(() => {
+      // getDuration(downloadPath)
+        // .then((duration) => { audioDuration = duration; })
+        // .catch((error) => { audioDuration = 1; })
+        // .finally(() => {
 
           return client.replyMessage(
             replyToken,
             {
 
               type: 'text',
-              text : ''+audioDuration,
+              text : ''+ getDuration(downloadPath),
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -417,7 +417,7 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
-        });
+        // });  //end finally()
     });
 }
 
