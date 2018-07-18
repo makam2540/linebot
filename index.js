@@ -344,7 +344,7 @@ function handleImage(message, replyToken, source) {
                       replyToken,
                       { 
                         type: 'text',
-                        text : 'id = '+original
+                        text : 'id = '+downloadPath
 
                         // type: 'image',
                         // originalContentUrl: original,
