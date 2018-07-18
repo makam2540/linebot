@@ -424,7 +424,7 @@ function handleVideo(message, replyToken, source) {
 function handleAudio(message, replyToken) {
   const downloadPath = '/app/downloaded/_39084165.m4a'
   // const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
-  var getDuration = require('get-audio-duration');
+
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
      
@@ -434,7 +434,7 @@ function handleAudio(message, replyToken) {
         
       getDuration(downloadPath)
          .then((duration) => { audioDuration = duration})
-        .catch((error) => { audioDuration = 1; })
+        // .catch(() => { audioDuration = 1; })
         .finally(() => {
 
           return client.replyMessage(
