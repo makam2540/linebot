@@ -402,7 +402,7 @@ function handleAudio(message, replyToken) {
       getDuration(downloadPath)
         .then((duration) => { audioDuration = duration; })
         // .catch((error) => { audioDuration = 1; })
-        .finally(() => {
+        // .finally(() => {
 
           return client.replyMessage(
             replyToken,
@@ -417,7 +417,7 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
-        });  //end finally()
+        // });  //end finally()
     });
 }
 
