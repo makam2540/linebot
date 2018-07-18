@@ -402,10 +402,10 @@ function handleAudio(message, replyToken) {
      
       var audioDuration ;
       
-      // ffprobe.getDuration(downloadPath).then(function (duration) {
+      getDuration('/app/downloaded/8281544352601.m4').then(function (duration) {
         
-      getDuration('/app/downloaded/8281544352601.m4')
-         .then((duration) => { audioDuration = duration})
+      // getDuration('/app/downloaded/8281544352601.m4')
+      //    .then((duration) => { audioDuration = duration})
       //   .catch((error) => { audioDuration = 1; })
       //   .finally(() => {
 
@@ -414,7 +414,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '!!!!!!!!!=='+audioDuration ,
+              text : '!!!!!!!!!=='+duration ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -422,9 +422,9 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
-        // }) // end get
+        // }) // end getา
         // });  //end finally()
-    // });
+    });
 }
 
 function downloadContent(messageId, downloadPath) {
