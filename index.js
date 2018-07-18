@@ -397,7 +397,7 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // var getDuration = require("get-audio-duration");
-      var audioDuration;
+      var audioDuration = 1;
       
       getDuration(downloadPath)
         .then((duration) => { audioDuration = duration})
@@ -409,7 +409,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '!!!!!!!!!=='+duration ,
+              text : '!!!!!!!!!=='+audioDuration ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
