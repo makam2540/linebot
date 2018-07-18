@@ -443,7 +443,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+audioDuration ,
+              text : '=  '+duration ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
