@@ -411,7 +411,7 @@ function handleAudio(message, replyToken) {
               duration: audioDuration * 1000,
             }
           );
-        });
+        // });
     });
 }
 
