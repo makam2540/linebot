@@ -5,11 +5,11 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
-var bodyParser = require('body-parser')
-var request = require('request')
-var sql = require('mssql')
-var sqlInstance = require("mssql")
-var ffmpeg = require("ffmpeg")
+var bodyParser = require('body-parser');
+var request = require('request');
+var sql = require('mssql');
+var sqlInstance = require("mssql");
+var ffmpeg = require("ffmpeg");
 var getDuration = require("get-audio-duration");
 
 // var port = process.env.PORT || 7777;
@@ -400,9 +400,9 @@ function handleAudio(message, replyToken) {
       var audioDuration;
       
       getDuration(downloadPath)
-        // .then((duration) => { audioDuration = duration; })
-        // .catch((error) => { audioDuration = 1; })
-        // .finally(() => {
+        .then((duration) => { audioDuration = duration; })
+        .catch((error) => { audioDuration = 1; })
+        .finally(() => {
 
           return client.replyMessage(
             replyToken,
@@ -412,7 +412,7 @@ function handleAudio(message, replyToken) {
               duration: audioDuration * 1000,
             }
           );
-        // });
+        });
     });
 }
 
