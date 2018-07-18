@@ -395,7 +395,7 @@ function handleVideo(message, replyToken, source) {
 function handleAudio(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
   var getDuration = require('get-audio-duration');
-  return downloadContent(message.id, downloadPath.duration)
+  return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
      
       var audioDuration ;
