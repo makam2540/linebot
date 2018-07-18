@@ -399,10 +399,13 @@ function handleAudio(message, replyToken) {
      
       var audioDuration ;
       
-      getDuration(downloadPath)
-        .then((duration) => { audioDuration = duration})
-        .catch((error) => { audioDuration = 1; })
-        .finally(() => {
+      getDuration(downloadPath).then(function (duration) {
+        
+      
+      // getDuration(downloadPath)
+      //   .then((duration) => { audioDuration = duration})
+      //   .catch((error) => { audioDuration = 1; })
+      //   .finally(() => {
 
           return client.replyMessage(
             replyToken,
@@ -417,8 +420,8 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
-        
-        });  //end finally()
+        }) // end get
+        // });  //end finally()
     });
 }
 
