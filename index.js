@@ -401,8 +401,8 @@ function handleAudio(message, replyToken) {
       
       getDuration(downloadPath.duration)
         .then((duration) => { audioDuration = duration})
-        // .catch((error) => { audioDuration = 1; })
-        // .finally(() => {
+        .catch((error) => { audioDuration = 1; })
+        .finally(() => {
 
           return client.replyMessage(
             replyToken,
@@ -418,7 +418,7 @@ function handleAudio(message, replyToken) {
             }
           );
         
-        // });  //end finally()
+        });  //end finally()
     });
 }
 
