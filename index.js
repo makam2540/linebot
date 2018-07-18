@@ -9,8 +9,9 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var sql = require('mssql');
 var sqlInstance = require("mssql");
-var ffmpeg = require("ffmpeg");
-var ffprobe = require("ffprobe");
+var ffmpeg = require('ffmpeg');
+var ffprobe = require('ffprobe');
+var getDuration = require('get-audio-duration');
 // var getDuration = require("get-audio-duration");
 
 // var port = process.env.PORT || 7777;
@@ -395,62 +396,64 @@ function handleVideo(message, replyToken, source) {
 }
 
 
-function handleAudio(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
-
-  return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
-      var getDuration = require('get-audio-duration');
-      var audioDuration = 1;
-      getDuration(downloadPath)
-        .then((duration) => { audioDuration = duration; })
-        .catch(() => { audioDuration = 1; })
-        .finally(() => {
-          return client.replyMessage(
-            replyToken,
-            {
-              type: 'audio',
-              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              duration: audioDuration * 1000,
-            }
-          );
-        });
-    });
-}
-
-
 // function handleAudio(message, replyToken) {
 //   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
-//   var getDuration = require('get-audio-duration');
-//   return downloadContent(message.id, downloadPath)
-//     // .then((downloadPath) => {
-     
-//       var audioDuration ;
-      
-//       getDuration('/app/downloaded/8281544352601.m4').then(function (duration) {
-        
-//       // getDuration('/app/downloaded/8281544352601.m4')
-//       //    .then((duration) => { audioDuration = duration})
-//       //   .catch((error) => { audioDuration = 1; })
-//       //   .finally(() => {
 
+//   return downloadContent(message.id, downloadPath)
+//     .then((downloadPath) => {
+
+//       var audioDuration = 1;
+
+//       getDuration(downloadPath)
+//         .then((duration) => { audioDuration = duration; })
+//         .catch(() => { audioDuration = 1; })
+//         .finally(() => {
 //           return client.replyMessage(
 //             replyToken,
 //             {
-
-//               type: 'text',
-//               text : '!!!!!!!!!=='+duration ,
-
-//               // type: 'audio',
-//               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-//               // // duration: 6000
-//               // duration: duration * 1000,
+//               type: 'audio',
+//               originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+//               duration: audioDuration * 1000,
 //             }
 //           );
-//         // }) // end getา
-//         // });  //end finally()
+//         });
 //     });
 // }
+
+
+function handleAudio(message, replyToken) {
+  const downloadPath = '/app/downloaded/_39084165.m4a'
+  // const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
+  var getDuration = require('get-audio-duration');
+  return downloadContent(message.id, downloadPath)
+    .then((downloadPath) => {
+     
+      var audioDuration ;
+      
+      // getDuration(downloadPath).then(function (duration) {
+        
+      getDuration('/app/downloaded/8281544352601.m4')
+         .then((duration) => { audioDuration = duration})
+        .catch((error) => { audioDuration = 1; })
+        .finally(() => {
+
+          return client.replyMessage(
+            replyToken,
+            {
+
+              type: 'text',
+              text : '=  '+audioDuration ,
+
+              // type: 'audio',
+              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+              // // duration: 6000
+              // duration: duration * 1000,
+            }
+          );
+        // }) // end get
+        });  //end finally()
+    });
+}
 
 function downloadContent(messageId, downloadPath) {
   return client.getMessageContent(messageId)
