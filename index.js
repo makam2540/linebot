@@ -396,11 +396,11 @@ function handleAudio(message, replyToken) {
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-      var getDuration = require("get-audio-duration");
-      // var audioDuration ;
+      var getDuration = require('get-audio-duration');
+      var audioDuration ;
       
       getDuration(downloadPath)
-        .then((duration) => { var audioDuration = duration})
+        .then((duration) => { audioDuration = duration
         // .catch((error) => { audioDuration = 1; })
         // .finally(() => {
 
@@ -417,6 +417,7 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
+        })
         // });  //end finally()
     });
 }
