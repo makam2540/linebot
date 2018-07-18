@@ -343,12 +343,12 @@ function handleImage(message, replyToken, source) {
                       return client.replyMessage(
                       replyToken,
                       { 
-                        type: 'text',
-                        text : 'id = '+downloadPath
+                        // type: 'text',
+                        // text : 'id = '+downloadPath
 
-                        // type: 'image',
-                        // originalContentUrl: original,
-                        // previewImageUrl: preview,
+                        type: 'image',
+                        originalContentUrl: original,
+                        previewImageUrl: preview,
 
 
                         // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -398,14 +398,14 @@ function handleAudio(message, replyToken) {
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
   var getDuration = require('get-audio-duration');
   return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
+    // .then((downloadPath) => {
      
       var audioDuration ;
       
       // ffprobe.getDuration(downloadPath).then(function (duration) {
         
-      // getDuration(downloadPath)
-      //   .then((duration) => { audioDuration = duration})
+      getDuration('/app/downloaded/8281544352601.m4')
+         .then((duration) => { audioDuration = duration})
       //   .catch((error) => { audioDuration = 1; })
       //   .finally(() => {
 
@@ -414,7 +414,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '!!!!!!!!!=='+downloadPath ,
+              text : '!!!!!!!!!=='+audioDuration ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -424,7 +424,7 @@ function handleAudio(message, replyToken) {
           );
         // }) // end get
         // });  //end finally()
-    });
+    // });
 }
 
 function downloadContent(messageId, downloadPath) {
