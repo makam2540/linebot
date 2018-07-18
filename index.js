@@ -300,7 +300,7 @@ function handleText(message, replyToken, source) {
         {
           type: 'audio',
           originalContentUrl: 'https://cdn.fbsbx.com/v/t59.3654-21/37252581_1735688046499565_8691086930156191744_n.m4a/_39084165.m4a?_nc_cat=0&oh=d0154f409b2f290e4319fa8c69e64304&oe=5B50E3A8&dl=1',
-          duration: 6000
+          duration: 4000
         }
       );
     default:
