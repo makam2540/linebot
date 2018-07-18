@@ -400,20 +400,24 @@ function handleAudio(message, replyToken) {
       var audioDuration;
       
       getDuration(downloadPath)
-        // .then((duration) => { audioDuration = duration; })
-        // .catch((error) => { audioDuration = 1; })
-        // .finally(() => {
+        .then((duration) => { audioDuration = duration; })
+        .catch((error) => { audioDuration = 1; })
+        .finally(() => {
 
           return client.replyMessage(
             replyToken,
             {
-              type: 'audio',
-              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              // duration: 6000
-              duration: duration * 1000,
+
+              type: 'text',
+              text : ''+duration,
+
+              // type: 'audio',
+              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+              // // duration: 6000
+              // duration: duration * 1000,
             }
           );
-        // });
+        });
     });
 }
 
