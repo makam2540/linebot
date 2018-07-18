@@ -400,9 +400,8 @@ function handleAudio(message, replyToken) {
      
       var audioDuration ;
       
-      ffprobe.getDuration(downloadPath).then(function (duration) {
+      // ffprobe.getDuration(downloadPath).then(function (duration) {
         
-      
       // getDuration(downloadPath)
       //   .then((duration) => { audioDuration = duration})
       //   .catch((error) => { audioDuration = 1; })
@@ -413,7 +412,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '!!!!!!!!!=='+duration ,
+              text : '!!!!!!!!!=='+downloadPath ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -421,7 +420,7 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
-        }) // end get
+        // }) // end get
         // });  //end finally()
     });
 }
