@@ -10,7 +10,7 @@ var request = require('request');
 var sql = require('mssql');
 var sqlInstance = require("mssql");
 var ffmpeg = require("ffmpeg");
-var duration = require("ffprobe");
+var ffprobe = require("ffprobe");
 // var getDuration = require("get-audio-duration");
 
 // var port = process.env.PORT || 7777;
@@ -400,7 +400,7 @@ function handleAudio(message, replyToken) {
      
       var audioDuration ;
       
-      getDuration(downloadPath).then(function (duration) {
+      ffprobe.getDuration(downloadPath).then(function (duration) {
         
       
       // getDuration(downloadPath)
