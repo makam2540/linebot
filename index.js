@@ -9,7 +9,7 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var sql = require('mssql')
 var sqlInstance = require("mssql")
-var ffmpeg = require("fluent-ffmpeg")
+var ffmpeg = require("ffmpeg")
 
 // var port = process.env.PORT || 7777;
 // // parse application/json
@@ -370,21 +370,21 @@ function handleVideo(message, replyToken, source) {
     .then((downloadPath) => {
       // FFmpeg and ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-     // cp.exec(`ffmpeg.convert mp4:${downloadPath}[0] jpeg:${previewPath}`);
+      cp.execSync(`convert mp4:${downloadPath} jpeg:${previewPath}`);
           var original = baseURL + '/downloaded/' + path.basename(downloadPath)
           var preview = baseURL + '/downloaded/' + path.basename(previewPath)
 
       return client.replyMessage(
         replyToken,
         {
-          // type: 'text',
-          // text : original +'\n\n'+ preview
+          type: 'text',
+          text : original +'\n'+ preview
           // originalContentUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
           // previewImageUrl: 'https://www.facebook.com/FantasmasTV/videos/377003622810012/?t=5',
 
-          type: 'video',
-          originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-          previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+          // type: 'video',
+          // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
         }
       );
     });
@@ -395,12 +395,14 @@ function handleAudio(message, replyToken) {
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
-      var getDuration = require('get-audio-duration');
+      // var getDuration = require("get-audio-duration");
       var audioDuration;
+      
       getDuration(downloadPath)
         .then((duration) => { audioDuration = duration; })
         .catch((error) => { audioDuration = 1; })
         .finally(() => {
+
           return client.replyMessage(
             replyToken,
             {
