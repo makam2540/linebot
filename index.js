@@ -401,7 +401,7 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       var getDuration = require('get-audio-duration');
-      var audioDuration;
+      var audioDuration = 1;
       getDuration(downloadPath)
         .then((duration) => { audioDuration = duration; })
         .catch(() => { audioDuration = 1; })
