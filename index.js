@@ -422,18 +422,18 @@ function handleVideo(message, replyToken, source) {
 
 
 function handleAudio(message, replyToken) {
-  const downloadPath = '/app/downloaded/_39084165.m4a'
+  // const downloadPath = '/app/downloaded/_39084165.m4a'
   // const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
 
-  // return downloadContent(message.id, downloadPath)
-  //   .then((downloadPath) => {
+  return downloadContent(message.id, downloadPath)
+    .then((downloadPath) => {
      
       var audioDuration ;
       
       // getDuration(downloadPath).then(function (duration) {
         
-      getDuration(downloadPath)
-      .then( function (duration) {
+      // getDuration(downloadPath)
+      // .then( function (duration) {
         // .catch(() => { audioDuration = 1; })
         // .finally(() => {
 
@@ -442,7 +442,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+duration ,
+              text : '=  '+downloadPath ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
