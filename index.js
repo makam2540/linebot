@@ -429,31 +429,28 @@ function handleAudio(message, replyToken) {
     .then((downloadPath) => {
      
       var audioDuration ;
-      
-      // getDuration(downloadPath).then(function (duration) {
-        
-      // getDuration(downloadPath)
-      //     .then((duration) => { audioDuration = duration; })
-//         .catch(() => { audioDuration = 1; })
-//         .finally(() => {
+              
+      getDuration(downloadPath)
+        .then((duration) => { audioDuration = duration; 
+        // .catch(() => { audioDuration = 1; })
+        // .finally(() => {
 
           return client.replyMessage(
             replyToken,
             {
 
-              // type: 'text',
-              // text : '=  '+downloadPath ,
+              type: 'text',
+              text : '=  '+audioDuration ,
 
-              type: 'audio',
-              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              duration: 4000
+              // type: 'audio',
+              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+              // duration: 4000
               // duration: duration * 1000,
             }
           );
         })
-        // }) // end get
         // });  //end finally()
-    // });
+    });
 }
 
 function downloadContent(messageId, downloadPath) {
