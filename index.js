@@ -439,12 +439,12 @@ function handleAudio(message, replyToken) {
             replyToken,
             {
 
-              // type: 'text',
-              // text : '=  '+getDuration(downloadPath) ,
+              type: 'text',
+              text : '=  '+baseURL + '/downloaded/' + path.basename(downloadPath)
 
-              type: 'audio',
-              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              duration: 1000
+              // type: 'audio',
+              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+              // duration: 1000
               // duration: duration * 1000,
             }
           );
