@@ -430,8 +430,8 @@ function handleAudio(message, replyToken) {
      
       var audioDuration ;
               
-      getDuration(downloadPath)
-        .then((duration) => { audioDuration = duration; 
+      // getDuration(downloadPath)
+      //   .then((duration) => { audioDuration = duration; 
         // .catch(() => { audioDuration = 1; })
         // .finally(() => {
 
@@ -440,15 +440,15 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+audioDuration ,
+              text : '=  '+getDuration(downloadPath) ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              // duration: 4000
+              // duration: 4000 
               // duration: duration * 1000,
             }
           );
-        })
+        // })
         // });  //end finally()
     });
 }
