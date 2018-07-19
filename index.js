@@ -425,8 +425,8 @@ function handleAudio(message, replyToken) {
   const downloadPath = '/app/downloaded/_39084165.m4a'
   // const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
 
-  return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
+  // return downloadContent(message.id, downloadPath)
+  //   .then((downloadPath) => {
      
       var audioDuration ;
       
@@ -453,7 +453,7 @@ function handleAudio(message, replyToken) {
         })
         // }) // end get
         // });  //end finally()
-    });
+    // });
 }
 
 function downloadContent(messageId, downloadPath) {
