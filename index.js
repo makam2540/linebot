@@ -300,12 +300,12 @@ function handleText(message, replyToken, source) {
         {
           type: 'audio',
           originalContentUrl: 'https://cdn.fbsbx.com/v/t59.3654-21/37252581_1735688046499565_8691086930156191744_n.m4a/_39084165.m4a?_nc_cat=0&oh=d0154f409b2f290e4319fa8c69e64304&oe=5B50E3A8&dl=1',
-          duration: 4000
+          duration: 5000
         }
       );
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
-      return replyText(replyToken,"ccc") ;
+      return replyText(replyToken,message.text) ;
   }
 }
 
@@ -422,7 +422,7 @@ function handleVideo(message, replyToken, source) {
 
 
 function handleAudio(message, replyToken) {
-  // const downloadPath = '/app/downloaded/_39084165.m4a'
+  const downloadPath = '/app/downloaded/_39084165.m4a'
   // const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
 
   return downloadContent(message.id, downloadPath)
@@ -433,8 +433,7 @@ function handleAudio(message, replyToken) {
       // getDuration(downloadPath).then(function (duration) {
         
       getDuration(downloadPath)
-         .then((duration) => { 
-           audioDuration = duration
+         .then((duration) => { audioDuration = duration})
         // .catch(() => { audioDuration = 1; })
         .finally(() => {
 
@@ -443,7 +442,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+duration ,
+              text : '=  '+audioDuration ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -453,7 +452,6 @@ function handleAudio(message, replyToken) {
           );
         // }) // end get
         });  //end finally()
-      })
     });
 }
 
