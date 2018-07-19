@@ -415,7 +415,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+baseURL + '/downloaded/' + path.basename(downloadPath)
+              text : '=  '+downloadPath
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
