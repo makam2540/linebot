@@ -444,7 +444,7 @@ function handleAudio(message, replyToken) {
 
               type: 'audio',
               originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              duration: 0
+              duration: 1
               // duration: duration * 1000,
             }
           );
