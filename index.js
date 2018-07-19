@@ -396,33 +396,8 @@ function handleVideo(message, replyToken, source) {
 }
 
 
-// function handleAudio(message, replyToken) {
-//   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
-
-//   return downloadContent(message.id, downloadPath)
-//     .then((downloadPath) => {
-
-//       var audioDuration = 1;
-
-//       getDuration(downloadPath)
-//         .then((duration) => { audioDuration = duration; })
-//         .catch(() => { audioDuration = 1; })
-//         .finally(() => {
-//           return client.replyMessage(
-//             replyToken,
-//             {
-//               type: 'audio',
-//               originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-//               duration: audioDuration * 1000,
-//             }
-//           );
-//         });
-//     });
-// }
-
-
 function handleAudio(message, replyToken) {
-  // const downloadPath = '/app/downloaded/_39084165.m4a'
+
   const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.m4a`);
 
   return downloadContent(message.id, downloadPath)
@@ -464,14 +439,19 @@ function downloadContent(messageId, downloadPath) {
 }
 
 function handleLocation(message, replyToken) {
+  var latitude =message.latitude
+  var longitude = message.longitude
   return client.replyMessage(
     replyToken,
     {
-      type: 'location',
-      title: message.title,
-      address: message.address,
-      latitude: message.latitude,
-      longitude: message.longitude,
+      type: 'text',
+      text : 'latitude = '+latitude + ' longitude = '+ longitude
+
+      // type: 'location',
+      // title: message.title,
+      // address: message.address,
+      // latitude: message.latitude,
+      // longitude: message.longitude,
     }
   );
 }
