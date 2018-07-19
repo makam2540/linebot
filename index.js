@@ -433,20 +433,20 @@ function handleAudio(message, replyToken) {
       // getDuration(downloadPath).then(function (duration) {
         
       // getDuration(downloadPath)
-      // .then( function (duration) {
-        // .catch(() => { audioDuration = 1; })
-        // .finally(() => {
+      //     .then((duration) => { audioDuration = duration; })
+//         .catch(() => { audioDuration = 1; })
+//         .finally(() => {
 
           return client.replyMessage(
             replyToken,
             {
 
-              type: 'text',
-              text : '=  '+downloadPath ,
+              // type: 'text',
+              // text : '=  '+downloadPath ,
 
-              // type: 'audio',
-              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              // // duration: 6000
+              type: 'audio',
+              originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+              duration: 6000
               // duration: duration * 1000,
             }
           );
