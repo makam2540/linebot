@@ -432,17 +432,17 @@ function handleAudio(message, replyToken) {
       
       // getDuration(downloadPath).then(function (duration) {
         
-      getDuration(downloadPath)
-         .then((duration) => { audioDuration = duration})
+      return getDuration(downloadPath)
+      then( function (duration) {
         // .catch(() => { audioDuration = 1; })
-        .finally(() => {
+        // .finally(() => {
 
           return client.replyMessage(
             replyToken,
             {
 
               type: 'text',
-              text : '=  '+audioDuration ,
+              text : '=  '+duration ,
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
@@ -450,8 +450,9 @@ function handleAudio(message, replyToken) {
               // duration: duration * 1000,
             }
           );
+        })
         // }) // end get
-        });  //end finally()
+        // });  //end finally()
     });
 }
 
