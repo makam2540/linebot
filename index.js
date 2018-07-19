@@ -433,7 +433,7 @@ function handleAudio(message, replyToken) {
       // getDuration(downloadPath).then(function (duration) {
         
       return getDuration(downloadPath)
-      then( function (duration) {
+      .then( function (duration) {
         // .catch(() => { audioDuration = 1; })
         // .finally(() => {
 
