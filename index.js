@@ -292,13 +292,10 @@ function handleText(message, replyToken, source) {
                     conn.connect().then(function() {
                       var a = 10
                           var req = new sql.Request(conn); 
-                            req.query('SELECT * FROM Image').then(function (result){
-                                  for(var i=0;i<result.rowsAffected;i++){
-                                    if(result.recordset[i].im_Id == a)
-                                    {
-                                      var dPath = result.recordset[i].image64;
-                                    }
-                                  }
+                            req.query('SELECT * FROM Question').then(function (result){
+                                 
+                                      var dPath = result.recordset[0].image64;
+                                 
                   return client.replyMessage(
                     replyToken,
                     {
