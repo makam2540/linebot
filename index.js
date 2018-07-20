@@ -287,24 +287,24 @@ function handleText(message, replyToken, source) {
           return replyText(replyToken, 'Leaving room')
             .then(() => client.leaveRoom(source.roomId));
       }
-      case 'aaaa':
-                  var conn = new sql.ConnectionPool(dbConfig);
-                    conn.connect().then(function() {
-                      var a = 10
-                          var req = new sql.Request(conn); 
-                            req.query('SELECT * FROM Question').then(function (result){
+      // case 'aaaa':
+      //             var conn = new sql.ConnectionPool(dbConfig);
+      //               conn.connect().then(function() {
+      //                 var a = 10
+      //                     var req = new sql.Request(conn); 
+      //                       req.query('SELECT * FROM Question').then(function (result){
                                  
-                                      var dPath = result.recordset[0].Name;
+      //                                 var dPath = result.recordset[0].Name;
                                  
-                  return client.replyMessage(
-                    replyToken,
-                    {
-                      type: 'text',
-                      text : dPath
-                    }
-                  );
-                })
-              });
+      //             return client.replyMessage(
+      //               replyToken,
+      //               {
+      //                 type: 'text',
+      //                 text : dPath
+      //               }
+      //             );
+      //           })
+      //         });
 
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
@@ -328,6 +328,29 @@ function handleImage(message, replyToken, source) {
       var original = baseURL + '/downloaded/' + path.basename(downloadPath);
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
+
+
+
+      var conn = new sql.ConnectionPool(dbConfig);
+                    conn.connect().then(function() {
+                     
+                          var req = new sql.Request(conn); 
+                            req.query('SELECT * FROM Question').then(function (result){
+                                 
+                                      var dPath = result.recordset[0].Name;
+                                 
+                  return client.replyMessage(
+                    replyToken,
+                    {
+                      type: 'text',
+                      text : dPath
+                    }
+                  );
+                })
+              });
+
+
+
      
         // var conn = new sql.ConnectionPool(dbConfig);
         // conn.connect().then(function() {
@@ -344,21 +367,21 @@ function handleImage(message, replyToken, source) {
         //                 }
         //               }
 
-                      return client.replyMessage(
-                      replyToken,
-                      { 
-                        // type: 'text',
-                        // text : 'id = '+downloadPath
+                    //   return client.replyMessage(
+                    //   replyToken,
+                    //   { 
+                    //     // type: 'text',
+                    //     // text : 'id = '+downloadPath
 
-                        type: 'image',
-                        originalContentUrl: original,
-                        previewImageUrl: preview,
+                    //     type: 'image',
+                    //     originalContentUrl: original,
+                    //     previewImageUrl: preview,
 
 
-                        // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-                        // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
-                      }
-                    );  //end replyMessage
+                    //     // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+                    //     // previewImageUrl: baseURL + '/downloaded/' + path.basename(previewPath),
+                    //   }
+                    // );  //end replyMessage
  
                 // })// end query select
     
