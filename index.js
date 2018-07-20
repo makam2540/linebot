@@ -400,7 +400,7 @@ function handleAudio(message, replyToken) {
      
       // var file = fs.createWriteStream("8292019837101.mp3");
  
-      // var request = http.get(originalUrl, function(response) {
+      // var request = http.get("https://sangster-bot.herokuapp.com/downloaded/8292019837101.mp3", function(response) {
       //         response.pipe(file);
       //         file.on('finish', function() {
       //             file.close();
@@ -412,7 +412,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+originalUrl
+              text : originalUrl
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
