@@ -12,6 +12,8 @@ var sqlInstance = require("mssql");
 var ffmpeg = require('ffmpeg');
 var ffprobe = require('ffprobe');
 var getDuration = require('get-audio-duration');
+var http = require('http');
+
 
 //  var dbConfig = {
 //                       user: 'sa',
@@ -393,30 +395,42 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
 
-      // var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+      var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
      
-      // var audioDuration ;
-              
-      // getDuration(downloadPath)
-      //   .then((duration) => { audioDuration = duration; 
-        // .catch(() => { audioDuration = 1; })
-        // .finally(() => {
+      var file = fs.createWriteStream("teerasej.mp3");
+ 
+      var request = http.get(originalUrl, function(response) {
+              response.pipe(file);
+              file.on('finish', function() {
+                  file.close();
+                 
+                  return client.replyMessage(
+                    replyToken,
+                    {
+                      type: 'text',
+                      text : '=  '+baseURL + '/downloaded/' + path.basename(downloadPath)
+                   }
+                  );
 
-          return client.replyMessage(
-            replyToken,
-            {
 
-              type: 'text',
-              text : '=  '+baseURL + '/downloaded/' + path.basename(downloadPath)
 
-              // type: 'audio',
-              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              // duration: 1000
-              // duration: duration * 1000,
-            }
-          );
-        // })
-        // });  //end finally()
+              });
+      });
+
+          // return client.replyMessage(
+          //   replyToken,
+          //   {
+
+          //     type: 'text',
+          //     text : '=  '+baseURL + '/downloaded/' + path.basename(downloadPath)
+
+          //     // type: 'audio',
+          //     // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
+          //     // duration: 1000
+          //     // duration: duration * 1000,
+          //   }
+          // );
+        
     });
 }
 
