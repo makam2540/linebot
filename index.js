@@ -396,11 +396,11 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
 
-      var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+      // var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
      
-      var file = fs.createWriteStream("teerasej.mp3");
+      var file = fs.createWriteStream("8292019837101.mp3");
  
-      var request = http.get(originalUrl, function(response) {
+      var request = http.get("https://sangster-bot.herokuapp.com/downloaded/8292019837101.mp3", function(response) {
               response.pipe(file);
               file.on('finish', function() {
                   file.close();
