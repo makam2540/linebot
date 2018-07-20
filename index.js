@@ -16,16 +16,16 @@ var http = require('http');
 var pipe = require('pipe');
 
 
-//  var dbConfig = {
-//                       user: 'sa',
-//                       password: 'P@ssw0rd1234',
-//                       server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-//                       database: 'LinebotDB',
-//                       port:1433,
-//                       options: {
-//                           encrypt: true // Use this if you're on Windows Azure
-//                       }                      
-//     };
+ var dbConfig = {
+                      user: 'linebot',
+                      password: 'p@ssw0rdp',
+                      server: 'http://mgtfs.southeastasia.cloudapp.azure.com', 
+                      database: 'LineBotChat',
+                      port:1433,
+                      options: {
+                          encrypt: true // Use this if you're on Windows Azure
+                      }                      
+    };
 
    
 
@@ -319,20 +319,20 @@ function handleImage(message, replyToken, source) {
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
      
-        // var conn = new sql.ConnectionPool(dbConfig);
-        // conn.connect().then(function() {
-        //       var req = new sql.Request(conn); 
+        var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
                   
-        //         req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
+                req.query("INSERT INTO [dbo].[Image] ([image64]) VALUES ('"+message.id+"')")
               
-        //         req.query('SELECT * FROM Image').then(function (result){
-        //               for(var i=0;i<result.rowsAffected;i++){
-        //                 if(result.recordset[i].Image_id == message.id)
-        //                 {
-        //                   var dPath = result.recordset[i].oridinal;
-        //                   var pPath = result.recordset[i].preview;
-        //                 }
-        //               }
+                req.query('SELECT * FROM [dbo].[Image]').then(function (result){
+                      for(var i=0;i<result.rowsAffected;i++){
+                        if(result.recordset[i].Image_id == message.id)
+                        {
+                          var dPath = result.recordset[i].oridinal;
+                          var pPath = result.recordset[i].preview;
+                        }
+                      }
 
                       return client.replyMessage(
                       replyToken,
@@ -398,14 +398,14 @@ function handleAudio(message, replyToken) {
 
       var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
      
-      // var file = fs.createWriteStream("8292019837101.mp3");
+      var file = fs.createWriteStream("8292019837101.mp3");
  
-      // var request = http.get("https://sangster-bot.herokuapp.com/downloaded/8292019837101.mp3", function(response) {
-      //         response.pipe(file);
-      //         file.on('finish', function() {
-      //             file.close();
-      //         });
-      // });
+      var request = http.get("https://sangster-bot.herokuapp.com/downloaded/8292019837101.mp3", function(response) {
+              response.pipe(file);
+              file.on('finish', function() {
+                  file.close();
+              });
+      });
 
           return client.replyMessage(
             replyToken,
