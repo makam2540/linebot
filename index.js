@@ -288,14 +288,26 @@ function handleText(message, replyToken, source) {
             .then(() => client.leaveRoom(source.roomId));
       }
       case 'audio':
+      var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
+                req.query('SELECT * FROM Image').then(function (result){
+                      for(var i=0;i<result.rowsAffected;i++){
+                        if(result.recordset[i].imi_id == 10)
+                        {
+                          var dPath = result.recordset[i].image64;
+                          
+                        }
+                      }
       return client.replyMessage(
         replyToken,
         {
-          type: 'audio',
-          originalContentUrl: 'https://cdn.fbsbx.com/v/t59.3654-21/37252581_1735688046499565_8691086930156191744_n.m4a/_39084165.m4a?_nc_cat=0&oh=d0154f409b2f290e4319fa8c69e64304&oe=5B50E3A8&dl=1',
-          duration: 5000
+          type: 'text',
+          text : dPath
         }
       );
+    })
+  }
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
       return replyText(replyToken,message.text) ;
@@ -319,20 +331,20 @@ function handleImage(message, replyToken, source) {
       var preview = baseURL + '/downloaded/' + path.basename(previewPath);
       var Uid = source.userId
      
-        var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function() {
-              var req = new sql.Request(conn); 
+        // var conn = new sql.ConnectionPool(dbConfig);
+        // conn.connect().then(function() {
+        //       var req = new sql.Request(conn); 
                   
-                req.query("INSERT INTO [dbo].[Image] ([image64]) VALUES ('"+message.id+"')")
+        //         req.query("INSERT INTO [dbo].[Image] ([Image_id], [oridinal], [preview], [user_id]) VALUES ('"+message.id+"', '"+original+"' ,'"+preview+"','"+Uid+"')")
               
-                req.query('SELECT * FROM [dbo].[Image]').then(function (result){
-                      for(var i=0;i<result.rowsAffected;i++){
-                        if(result.recordset[i].Image_id == message.id)
-                        {
-                          var dPath = result.recordset[i].oridinal;
-                          var pPath = result.recordset[i].preview;
-                        }
-                      }
+        //         req.query('SELECT * FROM Image').then(function (result){
+        //               for(var i=0;i<result.rowsAffected;i++){
+        //                 if(result.recordset[i].Image_id == message.id)
+        //                 {
+        //                   var dPath = result.recordset[i].oridinal;
+        //                   var pPath = result.recordset[i].preview;
+        //                 }
+        //               }
 
                       return client.replyMessage(
                       replyToken,
@@ -350,9 +362,9 @@ function handleImage(message, replyToken, source) {
                       }
                     );  //end replyMessage
  
-                })// end query select
+                // })// end query select
     
-        });  //end connect
+        // });  //end connect
  
     }); // then((downloadPath)
 }  // end function
