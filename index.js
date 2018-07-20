@@ -19,7 +19,7 @@ var pipe = require('pipe');
  var dbConfig = {
                       user: 'linebot',
                       password: 'p@ssw0rd',
-                      server: 'http://mgtfs.southeastasia.cloudapp.azure.com', 
+                      server: 'mgtfs.southeastasia.cloudapp.azure.com', 
                       database: 'LineBotChat',
                       port:1433,
                       options: {
