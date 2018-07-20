@@ -422,31 +422,74 @@ function handleVideo(message, replyToken, source) {
 }
 
 
+var audio1
+
+var bufferToBase64 = function (buffer) {
+    var bytes = new Uint8Array(buffer);
+    var len = buffer.byteLength;
+    var binary = "";
+    for (var i = 0; i < len; i++) {
+        binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+};
+var base64ToBuffer = function (buffer) {
+    var binary = window.atob(buffer);
+    var buffer = new ArrayBuffer(binary.length);
+    var bytes = new Uint8Array(buffer);
+    for (var i = 0; i < buffer.byteLength; i++) {
+        bytes[i] = binary.charCodeAt(i) & 0xFF;
+    }
+    return buffer;
+};
+
+
+function initSound(arrayBuffer) {
+    var base64String = bufferToBase64(arrayBuffer);
+    var audioFromString = base64ToBuffer(base64String);
+    document.getElementById("audio1").value=base64String;
+    context.decodeAudioData(audioFromString, function (buffer) {
+        // audioBuffer is global to reuse the decoded audio later.
+        audioBuffer = buffer;
+        var buttons = document.querySelectorAll('button');
+        buttons[0].disabled = false;
+        buttons[1].disabled = false;
+    }, function (e) {
+        console.log('Error decoding file', e);
+    });
+}
+
 function handleAudio(message, replyToken) {
 
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp3`);
+    const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.mp3`);
 
-  return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
+    return downloadContent(message.id, downloadPath)
+      .then((downloadPath) => {
+  
+        var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
 
-      var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
 
-          return client.replyMessage(
+        originalUrl.addEventListener('change', function (e) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                initSound(this.result);
+            };
+            reader.readAsArrayBuffer(this.files[0]);
+        }, false);
+  
+        return client.replyMessage(
             replyToken,
             {
 
               type: 'text',
-              text : originalUrl
+              text : audio1
 
-              // type: 'audio',
-              // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
-              // duration: 1000
-              // duration: duration * 1000,
             }
           );
-        
-    });
-}
+
+          
+      });
+  }
 
 function downloadContent(messageId, downloadPath) {
   return client.getMessageContent(messageId)
