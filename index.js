@@ -403,7 +403,7 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
 
-      // originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+      //var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
      
       // var audioDuration ;
               
@@ -443,11 +443,13 @@ function downloadContent(messageId, downloadPath) {
 function handleLocation(message, replyToken) {
   var latitude =message.latitude
   var longitude = message.longitude
+  var title = message.title
+  var  address = message.address
   return client.replyMessage(
     replyToken,
     {
       type: 'text',
-      text : 'latitude = '+latitude + ' longitude = '+ longitude
+      text : 'latitude = '+latitude + '\n longitude = '+ longitude +'\n title = '+ title +'\n address = '+ address 
 
       // type: 'location',
       // title: message.title,
