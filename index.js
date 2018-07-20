@@ -492,8 +492,8 @@ fileReader.on('data', function (data) {
   return initSound(this.result);
 });
 
-  return downloadContent(message.id, downloadPath)
-    .then((downloadPath) => {
+  // return downloadContent(message.id, downloadPath)
+  //   .then((downloadPath) => {
 
           return client.replyMessage(
             replyToken,
@@ -510,7 +510,7 @@ fileReader.on('data', function (data) {
           );
         // })
         // });  //end finally()
-    });
+    // });
 }
 
 function downloadContent(messageId, downloadPath) {
