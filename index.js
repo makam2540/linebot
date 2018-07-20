@@ -13,6 +13,7 @@ var ffmpeg = require('ffmpeg');
 var ffprobe = require('ffprobe');
 var getDuration = require('get-audio-duration');
 var http = require('http');
+var pipe = require('pipe');
 
 
 //  var dbConfig = {
