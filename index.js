@@ -9,11 +9,11 @@ var bodyParser = require('body-parser');
 var request = require('request');
 var sql = require('mssql');
 var sqlInstance = require("mssql");
-// var ffmpeg = require('ffmpeg');
-// var ffprobe = require('ffprobe');
-// var getDuration = require('get-audio-duration');
-// var FileReader = require('filereader')
-// var context = require('audio-context')
+var ffmpeg = require('ffmpeg');
+var ffprobe = require('ffprobe');
+var getDuration = require('get-audio-duration');
+var FileReader = require('filereader')
+var context = require('audio-context')
 var http = require('http');
 var fs = require('fs');
 
