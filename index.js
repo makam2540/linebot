@@ -402,6 +402,8 @@ function handleAudio(message, replyToken) {
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
+
+      originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
      
       // var audioDuration ;
               
@@ -415,7 +417,7 @@ function handleAudio(message, replyToken) {
             {
 
               type: 'text',
-              text : '=  '+downloadPath
+              text : '=  '+originalUrl
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
