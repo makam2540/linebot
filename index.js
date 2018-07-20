@@ -407,23 +407,23 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       var oridinalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
-      
-      var file = fs.createWriteStream("teerasej.mp3");
 
-      var request = http.get(oridinalUrl, function(response) {
-        response.pipe(file);
-        file.on('finish', function() {
-            file.close();
-            // console.log('Download finished.');
-        });
-});
+//       var file = fs.createWriteStream("teerasej.mp3");
+
+//       var request = http.get(oridinalUrl, function(response) {
+//         response.pipe(file);
+//         file.on('finish', function() {
+//             file.close();
+//             // console.log('Download finished.');
+//         });
+// });
 
           return client.replyMessage(
             replyToken,
             {
 
               type: 'text',
-              text : 'Download finished.  '+
+              text : 'Download finished.'+oridinalUrl
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
