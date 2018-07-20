@@ -18,6 +18,7 @@
     "audio-context": "^1.0.3",
     "ffprobe": "^1.1.0",
     "http": "0.0.0",
+    "pipe": "^1.1.0",
     "fluent-ffmpeg": "^2.1.2",
     "request": "^2.87.0"
   }
