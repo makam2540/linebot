@@ -287,26 +287,26 @@ function handleText(message, replyToken, source) {
           return replyText(replyToken, 'Leaving room')
             .then(() => client.leaveRoom(source.roomId));
       }
-      case 'audio':
-      var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function() {
-              var req = new sql.Request(conn); 
-                req.query('SELECT * FROM [dbo].[Image]').then(function (result){
-                      for(var i=0;i<result.rowsAffected;i++){
-                        if(result.recordset[i].im_Id == 10)
-                        {
-                          var dPath = result.recordset[i].image64;
-                        }
-                      }
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'text',
-          text : dPath
-        }
-      );
-    })
-  });
+      case 'aaaa':
+                  var conn = new sql.ConnectionPool(dbConfig);
+                    conn.connect().then(function() {
+                          var req = new sql.Request(conn); 
+                            req.query('SELECT * FROM [dbo].[Image]').then(function (result){
+                                  for(var i=0;i<result.rowsAffected;i++){
+                                    if(result.recordset[i].im_Id == 10)
+                                    {
+                                      var dPath = result.recordset[i].image64;
+                                    }
+                                  }
+                  return client.replyMessage(
+                    replyToken,
+                    {
+                      type: 'text',
+                      text : dPath
+                    }
+                  );
+                })
+              });
 
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
