@@ -12,27 +12,17 @@ var sqlInstance = require("mssql");
 var ffmpeg = require('ffmpeg');
 var ffprobe = require('ffprobe');
 var getDuration = require('get-audio-duration');
-// var getDuration = require("get-audio-duration");
 
-// var port = process.env.PORT || 7777;
-// // parse application/json
-// app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({
-// 	extended: true
-// }));
-
-// connect to your database
-
- var dbConfig = {
-                      user: 'sa',
-                      password: 'P@ssw0rd1234',
-                      server: 'demomagic2.southeastasia.cloudapp.azure.com', 
-                      database: 'LinebotDB',
-                      port:1433,
-                      options: {
-                          encrypt: true // Use this if you're on Windows Azure
-                      }                      
-    };
+//  var dbConfig = {
+//                       user: 'sa',
+//                       password: 'P@ssw0rd1234',
+//                       server: 'demomagic2.southeastasia.cloudapp.azure.com', 
+//                       database: 'LinebotDB',
+//                       port:1433,
+//                       options: {
+//                           encrypt: true // Use this if you're on Windows Azure
+//                       }                      
+//     };
 
    
 
@@ -394,59 +384,6 @@ function handleVideo(message, replyToken, source) {
       );
     });
 }
-
-
-
-
-var context = new AudioContext();
-var source = null;
-var audioBuffer = null;
-// Converts an ArrayBuffer to base64, by converting to string 
-// and then using window.btoa' to base64. 
-var bufferToBase64 = function (buffer) {
-    var bytes = new Uint8Array(buffer);
-    var len = buffer.byteLength;
-    var binary = "";
-    for (var i = 0; i < len; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-};
-var base64ToBuffer = function (buffer) {
-    var binary = window.atob(buffer);
-    var buffer = new ArrayBuffer(binary.length);
-    var bytes = new Uint8Array(buffer);
-    for (var i = 0; i < buffer.byteLength; i++) {
-        bytes[i] = binary.charCodeAt(i) & 0xFF;
-    }
-    return buffer;
-};
-
-function initSound(arrayBuffer) {
-    var base64String = bufferToBase64(arrayBuffer);
-    var audioFromString = base64ToBuffer(base64String);
-    document.getElementById("encodedResult").value=base64String;
-    context.decodeAudioData(audioFromString, function (buffer) {
-
-    }, function (e) {
-        console.log('Error decoding file', e);
-    });
-}
-// User selects file, read it as an ArrayBuffer and pass to the API.
-var fileInput = document.querySelector('input[type="file"]');
-fileInput.addEventListener('change', function (e) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        initSound(this.result);
-    };
-    reader.readAsArrayBuffer(this.files[0]);
-}, false);
-
-
-
-
-
-
 
 
 function handleAudio(message, replyToken) {
