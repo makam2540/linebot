@@ -403,7 +403,7 @@ function handleAudio(message, replyToken) {
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
 
-      originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+      // originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
      
       // var audioDuration ;
               
