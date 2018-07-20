@@ -292,7 +292,7 @@ function handleText(message, replyToken, source) {
                     conn.connect().then(function() {
                       var a = 10
                           var req = new sql.Request(conn); 
-                            req.query('SELECT * FROM [dbo].[Image]').then(function (result){
+                            req.query('SELECT * FROM Image').then(function (result){
                                   for(var i=0;i<result.rowsAffected;i++){
                                     if(result.recordset[i].im_Id == a)
                                     {
