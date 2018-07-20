@@ -291,12 +291,11 @@ function handleText(message, replyToken, source) {
       var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
-                req.query('SELECT * FROM Image').then(function (result){
+                req.query('SELECT * FROM [dbo].[Image]').then(function (result){
                       for(var i=0;i<result.rowsAffected;i++){
-                        if(result.recordset[i].imi_id == 10)
+                        if(result.recordset[i].im_Id == 10)
                         {
                           var dPath = result.recordset[i].image64;
-                          
                         }
                       }
       return client.replyMessage(
@@ -308,6 +307,7 @@ function handleText(message, replyToken, source) {
       );
     })
   });
+
     default:
       console.log(`Echo message to ${replyToken}: ${message.text}`);
       return replyText(replyToken,message.text) ;
@@ -409,15 +409,6 @@ function handleAudio(message, replyToken) {
     .then((downloadPath) => {
 
       var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
-     
-      var file = fs.createWriteStream("8292019837101.mp3");
- 
-      var request = http.get("https://sangster-bot.herokuapp.com/downloaded/8292019837101.mp3", function(response) {
-              response.pipe(file);
-              file.on('finish', function() {
-                  file.close();
-              });
-      });
 
           return client.replyMessage(
             replyToken,
