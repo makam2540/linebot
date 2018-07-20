@@ -294,7 +294,7 @@ function handleText(message, replyToken, source) {
                           var req = new sql.Request(conn); 
                             req.query('SELECT * FROM Question').then(function (result){
                                  
-                                      var dPath = result.recordset[0].image64;
+                                      var dPath = result.recordset[0].Name;
                                  
                   return client.replyMessage(
                     replyToken,
