@@ -404,17 +404,6 @@ function handleAudio(message, replyToken) {
               response.pipe(file);
               file.on('finish', function() {
                   file.close();
-                 
-                  return client.replyMessage(
-                    replyToken,
-                    {
-                      type: 'text',
-                      text : '=  '+baseURL + '/downloaded/' + path.basename(downloadPath)
-                   }
-                  );
-
-
-
               });
       });
 
