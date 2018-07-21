@@ -14,6 +14,8 @@ var ffprobe = require('ffprobe');
 var getDuration = require('get-audio-duration');
 var http = require('http');
 var pipe = require('pipe');
+const lenaBuffer = require('audio-lena/mp3-base64');
+const context = require('audio-context')();
 
 
  var dbConfig = {
@@ -408,12 +410,24 @@ function handleAudio(message, replyToken) {
 
       var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
 
+
+                      // MP3 arrayBuffer
+                
+                context.decodeAudioData(lenaBuffer, (buffer) => {
+                    source = context.createBufferSource();
+                    source.buffer = buffer;
+                    source.connect(context.destination);
+                    source.loop = true;
+                
+                    source.start();
+                })
+
           return client.replyMessage(
             replyToken,
             {
 
               type: 'text',
-              text : originalUrl
+              text : source
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
