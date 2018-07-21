@@ -413,21 +413,23 @@ function handleAudio(message, replyToken) {
 
                       // MP3 arrayBuffer
                 
-                context.decodeAudioData(lenaBuffer, (buffer) => {
-                    source = context.createBufferSource();
-                    source.buffer = buffer;
-                    source.connect(context.destination);
-                    source.loop = true;
+                // context.decodeAudioData(lenaBuffer, (buffer) => {
+                //     source = context.createBufferSource();
+                //     source.buffer = buffer;
+                //     source.connect(context.destination);
+                //     source.loop = true;
                 
-                    source.start();
-                })
+                //     source.start();
+                // })
+
+                let result = lena({format: originalUrl, type: 'base64'})
 
           return client.replyMessage(
             replyToken,
             {
 
               type: 'text',
-              text : source
+              text : result
 
               // type: 'audio',
               // originalContentUrl: baseURL + '/downloaded/' + path.basename(downloadPath),
