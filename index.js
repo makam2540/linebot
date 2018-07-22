@@ -101,10 +101,19 @@ function handleEvent(event) {
       }
 
     case 'follow':
-                return client.getProfile(event.source.userId)
-                .then((profile) => replyText(
-                  replyText(event.replyToken, 'Got followed event    '+profile.displayName)
-                ));
+                client.getProfile(event.source.userId)
+                .then((profile) =>{
+                  return client.replyMessage(
+                    replyToken,
+                    {
+                      type: 'text',
+                      text : "jion" +profile.displayName
+                    }
+                  );
+                })
+
+                  
+                  
 
      
 
