@@ -121,6 +121,11 @@ function handleEvent(event) {
                       type: 'text',
                       text : "Hello " +name
                     },
+                    {
+                      type: 'sticker',
+                      packageId: "1",
+                      stickerId: "4",
+                    }
                     
                   );
 
@@ -495,11 +500,14 @@ function handleSticker(message, replyToken) {
   return client.replyMessage(
     replyToken,
     {
-      type : 'text',
-      text : message.packageId + "\n"+message.stickerId
+      // type : 'text',
+      // text : message.packageId + "\n"+message.stickerId
       // type: 'sticker',
       // packageId: message.packageId,
       // stickerId: message.stickerId,
+      type: 'sticker',
+      packageId: "1",
+      stickerId: "4",
     }
   );
 }
