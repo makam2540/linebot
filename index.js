@@ -109,7 +109,12 @@ function handleEvent(event) {
                     event.replyToken,
                     {
                       type: 'text',
-                      text : "Got followed " +profile.displayName
+                      text : "Hello " +profile.displayName
+                    },
+                    {
+                      type: 'sticker',
+                      packageId: "8302512075293",
+                      stickerId: "8302512075293",
                     }
                   );
 
@@ -484,11 +489,11 @@ function handleSticker(message, replyToken) {
   return client.replyMessage(
     replyToken,
     {
-      type : 'text',
-      text : message.id
-      // type: 'sticker',
-      // packageId: message.packageId,
-      // stickerId: message.stickerId,
+      // type : 'text',
+      // text : message.id
+      type: 'sticker',
+      packageId: message.packageId,
+      stickerId: message.stickerId,
     }
   );
 }
