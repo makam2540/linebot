@@ -289,27 +289,12 @@ function handleText(message, replyToken, source) {
           return replyText(replyToken, 'Leaving room')
             .then(() => client.leaveRoom(source.roomId));
       }
-      // case 'aaaa':
-      //             var conn = new sql.ConnectionPool(dbConfig);
-      //               conn.connect().then(function() {
-      //                 var a = 10
-      //                     var req = new sql.Request(conn); 
-      //                       req.query('SELECT * FROM Question').then(function (result){
-                                 
-      //                                 var dPath = result.recordset[0].Name;
-                                 
-      //             return client.replyMessage(
-      //               replyToken,
-      //               {
-      //                 type: 'text',
-      //                 text : dPath
-      //               }
-      //             );
-      //           })
-      //         });
-
+      
     default:
-      console.log(`Echo message to ${replyToken}: ${message.text}`);
+    var text = message.text
+    var uid = source.userId
+
+     // console.log(`Echo message to ${replyToken}: ${message.text}`);
       return replyText(replyToken,message.text) ;
   }
 }
@@ -407,22 +392,14 @@ function handleAudio(message, replyToken) {
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
+      
+      // var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
 
-      var originalUrl = baseURL + '/downloaded/' + path.basename(downloadPath)
+      
+          let buf = fs.readFileSync('_39084165.mp3')
+          console.log(buf.toString('base64'))
 
 
-                      // MP3 arrayBuffer
-                
-                // context.decodeAudioData(lenaBuffer, (buffer) => {
-                //     source = context.createBufferSource();
-                //     source.buffer = buffer;
-                //     source.connect(context.destination);
-                //     source.loop = true;
-                
-                //     source.start();
-                // })
-
-                let result = lena({format: originalUrl, type: 'base64'})
 
           return client.replyMessage(
             replyToken,
