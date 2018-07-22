@@ -104,7 +104,7 @@ function handleEvent(event) {
                 client.getProfile(event.source.userId)
                 .then((profile) =>{
                   return client.replyMessage(
-                    replyToken,
+                    event.replyToken,
                     {
                       type: 'text',
                       text : "jion" +profile.displayName
