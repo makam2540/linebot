@@ -101,7 +101,12 @@ function handleEvent(event) {
       }
 
     case 'follow':
-      return replyText(event.replyToken, 'Got followed event');
+                return client.getProfile(source.userId)
+                .then((profile) => replyText(
+                  replyText(event.replyToken, 'Got followed event'+profile.displayName)
+                ));
+
+     
 
     case 'unfollow':
       return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
@@ -291,11 +296,30 @@ function handleText(message, replyToken, source) {
       }
       
     default:
+    
     var text = message.text
     var uid = source.userId
+     
+    var gid = source.groupId
 
-     // console.log(`Echo message to ${replyToken}: ${message.text}`);
-      return replyText(replyToken,message.text) ;
+    var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
+
+              req.query("SELECT * FROM message").then(function (result){
+                              for(var i=0;i<result.rowsAffected;i++){
+                                if(result.recordset[i].text != message.text)
+                                {
+                                  req.query("INSERT INTO [dbo].[message] ([text], [u_id], [q_id]) VALUES ('"+text+"', '"+uid+"' ,'"+gid+"')")
+                                  return replyText(replyToken,"คำถามของท่านถูกบันทึกไว้แล้ว") ;
+                                }
+                              }
+              }) // end select
+  })  //end conn
+
+    // console.log(`Echo message to ${replyToken}: ${message.text}`);
+    //   return replyText(replyToken,message.text) ;
+
   }
 }
 
