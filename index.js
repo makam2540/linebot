@@ -104,18 +104,24 @@ function handleEvent(event) {
                 client.getProfile(event.source.userId)
                 .then((profile) =>{
 
+                    var user_id = event.source.userId
+                    var name = profile.displayName
+
+                  var conn = new sql.ConnectionPool(dbConfig);
+                  conn.connect().then(function() {
+                        var req = new sql.Request(conn); 
+
+                          req.query("INSERT INTO [dbo].[user] ([u_id], [u_name]) VALUES ('"+user_id+"', '"+name+"')")
+                                 
+                  })  //end conn
 
                   return client.replyMessage(
                     event.replyToken,
                     {
                       type: 'text',
-                      text : "Hello " +profile.displayName
+                      text : "Hello " +name
                     },
-                    {
-                      type: 'sticker',
-                      packageId: "8302512075293",
-                      stickerId: "8302512075293",
-                    }
+                    
                   );
 
                 })
@@ -489,11 +495,11 @@ function handleSticker(message, replyToken) {
   return client.replyMessage(
     replyToken,
     {
-      // type : 'text',
-      // text : message.id
-      type: 'sticker',
-      packageId: message.packageId,
-      stickerId: message.stickerId,
+      type : 'text',
+      text : message.packageId + "\n"+message.stickerId
+      // type: 'sticker',
+      // packageId: message.packageId,
+      // stickerId: message.stickerId,
     }
   );
 }
