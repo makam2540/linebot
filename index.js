@@ -103,19 +103,18 @@ function handleEvent(event) {
     case 'follow':
                 client.getProfile(event.source.userId)
                 .then((profile) =>{
+
+
                   return client.replyMessage(
                     event.replyToken,
                     {
                       type: 'text',
-                      text : "jion" +profile.displayName
+                      text : "Got followed " +profile.displayName
                     }
                   );
+
                 })
 
-                  
-                  
-
-     
 
     case 'unfollow':
       return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
@@ -487,7 +486,7 @@ function handleSticker(message, replyToken) {
     {
       type: 'sticker',
       packageId: message.packageId,
-      stickerId: message.stickerId,
+     // stickerId: message.stickerId,
     }
   );
 }
