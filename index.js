@@ -484,9 +484,11 @@ function handleSticker(message, replyToken) {
   return client.replyMessage(
     replyToken,
     {
-      type: 'sticker',
-      packageId: message.packageId,
-     // stickerId: message.stickerId,
+      type : 'text',
+      text : message.id
+      // type: 'sticker',
+      // packageId: message.packageId,
+      // stickerId: message.stickerId,
     }
   );
 }
