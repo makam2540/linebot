@@ -485,8 +485,8 @@ function handleLocation(message, replyToken, source) {
   var  address = message.address
   var usid = source.userId
   
-if(a === ''){
-  A1 = "Direct User"
+if(a === ' '){
+  A1 = 'Direct User'
 }else{
   A1 = a
 }
