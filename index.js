@@ -492,27 +492,27 @@ function handleLocation(message, replyToken, source) {
   }
   
 
-var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function() {
-              var req = new sql.Request(conn); 
+// var conn = new sql.ConnectionPool(dbConfig);
+//         conn.connect().then(function() {
+//               var req = new sql.Request(conn); 
                   
-                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+A1+"')")
+//                 req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+A1+"')")
               
-     })
+//      })
 
-  // return client.replyMessage(
-  //   replyToken,
-  //   {
-  //     type: 'text',
-  //     text : 'latitude = '+latitude + '\n longitude = '+ longitude +'\n title = '+ title +'\n address = '+ address 
+  return client.replyMessage(
+    replyToken,
+    {
+      type: 'text',
+      text : 'latitude = '+A1 + '\n address = '+ address 
 
-  //     // type: 'location',
-  //     // title: message.title,
-  //     // address: message.address,
-  //     // latitude: message.latitude,
-  //     // longitude: message.longitude,
-  //   }
-  // );
+      // type: 'location',
+      // title: message.title,
+      // address: message.address,
+      // latitude: message.latitude,
+      // longitude: message.longitude,
+    }
+  );
 }
 
 function handleSticker(message, replyToken) {
