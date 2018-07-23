@@ -480,15 +480,15 @@ function handleLocation(message, replyToken, source) {
   // var latitude =message.latitude
   // var longitude = message.longitude
   // var title = message.title
-  var qid
+  var A1
   var a = source.groupId
   var  address = message.address
   var usid = source.userId
   
-  if(a == 0){
-     qid = "Direct User"
+  if(a == ''){
+     A1 = "Direct User"
   }else{
-     qid = a
+     A1 = a
   }
   
 
@@ -496,7 +496,7 @@ var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
                   
-                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+qid+"')")
+                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+A1+"')")
               
      })
 
