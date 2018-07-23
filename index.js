@@ -29,7 +29,7 @@ const context = require('audio-context')();
                       }                      
     };
 
-   
+    var Cdate = datetime()
 
 // create LINE SDK config from env variables
 const config = {
@@ -325,7 +325,7 @@ function handleText(message, replyToken, source) {
     var uid = source.userId
      
     var gid = source.groupId
-    var start = Date.now();
+    
     // var conn = new sql.ConnectionPool(dbConfig);
     //     conn.connect().then(function() {
     //           var req = new sql.Request(conn); 
@@ -335,7 +335,7 @@ function handleText(message, replyToken, source) {
     //           //                   if(result.recordset[i].text != message.text)
     //           //                   {
     //   req.query("INSERT INTO [dbo].[clock] ([Cdate]) VALUES ('"+d+"')")
-                                  return replyText(replyToken,start) ;
+                                  return replyText(replyToken,Cdate) ;
               //                   }
               //                 }
               // }) // end select
