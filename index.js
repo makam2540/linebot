@@ -31,7 +31,7 @@ const context = require('audio-context')();
 
     // var date = Date.UTC()
     var date = new Date();
-    var a = date.getTimezoneOffset() 
+    var a = date.getTimezoneOffset() * 60000;
     
     // var a = date.toGMTString()
 // create LINE SDK config from env variables
