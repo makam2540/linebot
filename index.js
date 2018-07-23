@@ -93,7 +93,7 @@ function handleEvent(event) {
         case 'audio':
           return handleAudio(message, event.replyToken);
         case 'location':
-          return handleLocation(message, event.replyToken);
+          return handleLocation(message, event.replyToken, event.source);
         case 'sticker':
           return handleSticker(message, event.replyToken);
         default:
@@ -476,13 +476,13 @@ function downloadContent(messageId, downloadPath) {
     }));
 }
 
-function handleLocation(message, replyToken) {
+function handleLocation(message, replyToken, source) {
   // var latitude =message.latitude
   // var longitude = message.longitude
   // var title = message.title
   var  address = message.address
-  var usid = message.userId
-  var qid = message.groupId
+  var usid = source.userId
+  var qid = source.groupId
 
 var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
