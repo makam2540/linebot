@@ -481,13 +481,12 @@ function handleLocation(message, replyToken, source) {
   // var longitude = message.longitude
   // var title = message.title
   var A1
-  var d = "Direct User"
   var a = source.groupId
   var  address = message.address
   var usid = source.userId
   
-if(a == ' '){
-  A1 = d
+if(a == null){
+  A1 = "Direct User"
 }else{
   A1 = a
 }
