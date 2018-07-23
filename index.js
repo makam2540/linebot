@@ -29,7 +29,7 @@ const context = require('audio-context')();
                       }                      
     };
 
-    var date = Date()
+    var date = Date.prototype.getDate()
 
 // create LINE SDK config from env variables
 const config = {
@@ -330,7 +330,7 @@ function handleText(message, replyToken, source) {
     //           //                   if(result.recordset[i].text != message.text)
     //           //                   {
     //   req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
-                                  return replyText(replyToken, "date") ;
+                                  return replyText(replyToken, date) ;
               //                   }
               //                 }
               // }) // end select
