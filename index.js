@@ -331,7 +331,7 @@ function handleText(message, replyToken, source) {
     //           //                   if(result.recordset[i].text != message.text)
     //           //                   {
     //   req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
-                                  return replyText(replyToken, date) ;
+                                  return replyText(replyToken, date.toUTCString()) ;
               //                   }
               //                 }
               // }) // end select
