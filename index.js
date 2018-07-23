@@ -325,7 +325,7 @@ function handleText(message, replyToken, source) {
     var uid = source.userId
      
     var gid = source.groupId
-      var d = Date("yyyy-mm-dd")
+      var d = Date('yyyy-mm-dd')
     // var conn = new sql.ConnectionPool(dbConfig);
     //     conn.connect().then(function() {
     //           var req = new sql.Request(conn); 
