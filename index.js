@@ -485,11 +485,11 @@ function handleLocation(message, replyToken, source) {
   var  address = message.address
   var usid = source.userId
   
-  if(a == ''){
-     A1 = "Direct User"
-  }else{
-     A1 = a
-  }
+  // if(a == ''){
+  //    A1 = "Direct User"
+  // }else{
+  //    A1 = a
+  // }
   
 
 // var conn = new sql.ConnectionPool(dbConfig);
@@ -504,7 +504,7 @@ function handleLocation(message, replyToken, source) {
     replyToken,
     {
       type: 'text',
-      text : 'latitude = '+A1 + '\n address = '+ address 
+      text : 'latitude = '+a + '\n address = '+ address 
 
       // type: 'location',
       // title: message.title,
