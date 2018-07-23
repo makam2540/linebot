@@ -480,9 +480,15 @@ function handleLocation(message, replyToken, source) {
   // var latitude =message.latitude
   // var longitude = message.longitude
   // var title = message.title
+  var qid
   var  address = message.address
   var usid = source.userId
-  var qid = source.groupId
+  if(source.groupId == ''){
+    qid = "Direct User"
+  }else{
+    qid = source.groupId
+  }
+  
 
 var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
