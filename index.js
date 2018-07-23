@@ -334,7 +334,7 @@ function handleText(message, replyToken, source) {
                               for(var i=0;i<result.rowsAffected;i++){
                                 if(result.recordset[i].text != message.text)
                                 {
-                                  req.query("INSERT INTO [dbo].[message] ([text], [u_id], [q_id]) VALUES ('"+text+"', '"+uid+"' ,'"+gid+"')")
+                                  req.query("INSERT INTO [dbo].[message] ([text], [u_id], [g_id]) VALUES ('"+text+"', '"+uid+"' ,'"+gid+"')")
                                   return replyText(replyToken,"คำถามของท่านถูกบันทึกไว้แล้ว") ;
                                 }
                               }
@@ -477,23 +477,32 @@ function downloadContent(messageId, downloadPath) {
 }
 
 function handleLocation(message, replyToken) {
-  var latitude =message.latitude
-  var longitude = message.longitude
-  var title = message.title
+  // var latitude =message.latitude
+  // var longitude = message.longitude
+  // var title = message.title
   var  address = message.address
-  return client.replyMessage(
-    replyToken,
-    {
-      type: 'text',
-      text : 'latitude = '+latitude + '\n longitude = '+ longitude +'\n title = '+ title +'\n address = '+ address 
 
-      // type: 'location',
-      // title: message.title,
-      // address: message.address,
-      // latitude: message.latitude,
-      // longitude: message.longitude,
-    }
-  );
+var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
+                  
+                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+message.userId+"' ,'"+message.groupId+"')")
+              
+     })
+
+  // return client.replyMessage(
+  //   replyToken,
+  //   {
+  //     type: 'text',
+  //     text : 'latitude = '+latitude + '\n longitude = '+ longitude +'\n title = '+ title +'\n address = '+ address 
+
+  //     // type: 'location',
+  //     // title: message.title,
+  //     // address: message.address,
+  //     // latitude: message.latitude,
+  //     // longitude: message.longitude,
+  //   }
+  // );
 }
 
 function handleSticker(message, replyToken) {
