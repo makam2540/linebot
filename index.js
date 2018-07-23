@@ -483,10 +483,10 @@ function handleLocation(message, replyToken, source) {
   var qid
   var  address = message.address
   var usid = source.userId
-  if(source.groupId == ' '){
-    qid = "Direct User"
-  }else{
+  if(source.groupId != 0){
     qid = source.groupId
+  }else{
+    qid = "Direct User"
   }
   
 
