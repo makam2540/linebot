@@ -29,7 +29,8 @@ const context = require('audio-context')();
                       }                      
     };
 
-    var date = Date.UTC()
+    // var date = Date.UTC()
+    var date = new Date(Date.UTC(96, 1, 2, 3, 4, 5));
 
 // create LINE SDK config from env variables
 const config = {
