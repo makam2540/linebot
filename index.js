@@ -485,18 +485,18 @@ function handleLocation(message, replyToken, source) {
   var  address = message.address
   var usid = source.userId
   
-  // if(a == ''){
-  //    A1 = "Direct User"
-  // }else{
-  //    A1 = a
-  // }
+if(a === ''){
+  A1 = "Direct User"
+}else{
+  A1 = a
+}
   
 
 var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
                   
-                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+a+"')")
+                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+A1+"')")
               
      })
 
