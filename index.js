@@ -325,20 +325,20 @@ function handleText(message, replyToken, source) {
     var uid = source.userId
      
     var gid = source.groupId
-
+      var d = Date
     var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
 
-              req.query("SELECT * FROM message").then(function (result){
-                              for(var i=0;i<result.rowsAffected;i++){
-                                if(result.recordset[i].text != message.text)
-                                {
-                                  req.query("INSERT INTO [dbo].[message] ([text], [u_id], [g_id]) VALUES ('"+text+"', '"+uid+"' ,'"+gid+"')")
-                                  return replyText(replyToken,"คำถามของท่านถูกบันทึกไว้แล้ว") ;
-                                }
-                              }
-              }) // end select
+              // req.query("insert into FROM clock").then(function (result){
+              //                 for(var i=0;i<result.rowsAffected;i++){
+              //                   if(result.recordset[i].text != message.text)
+              //                   {
+      req.query("INSERT INTO [dbo].[clock] ([Cdate]) VALUES ('"+d+"')")
+                                  // return replyText(replyToken,"คำถามของท่านถูกบันทึกไว้แล้ว") ;
+              //                   }
+              //                 }
+              // }) // end select
   })  //end conn
 
     // console.log(`Echo message to ${replyToken}: ${message.text}`);
@@ -480,15 +480,15 @@ function handleLocation(message, replyToken, source) {
   // var latitude =message.latitude
   // var longitude = message.longitude
   // var title = message.title
-  var A1
-  var a = source.groupId
+  var qId
+  var gId = source.groupId
   var  address = message.address
-  var usid = source.userId
+  var usId = source.userId
   
-if(a == null){
-  A1 = "Direct User"
+if(gId == null){
+  qId = "Direct User"
 }else{
-  A1 = a
+  qId = gId
 }
   
 
@@ -496,7 +496,7 @@ var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
                   
-                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+A1+"')")
+                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usId+"' ,'"+qId+"')")
               
      })
 
