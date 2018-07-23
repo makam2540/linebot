@@ -320,12 +320,7 @@ function handleText(message, replyToken, source) {
       }
       
     default:
-    
-    var text = message.text
-    var uid = source.userId
-     
-    var gid = source.groupId
-    
+      
     // var conn = new sql.ConnectionPool(dbConfig);
     //     conn.connect().then(function() {
     //           var req = new sql.Request(conn); 
@@ -335,7 +330,7 @@ function handleText(message, replyToken, source) {
     //           //                   if(result.recordset[i].text != message.text)
     //           //                   {
     //   req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
-                                  return replyText(replyToken,date) ;
+                                  return replyText(replyToken, "date") ;
               //                   }
               //                 }
               // }) // end select
