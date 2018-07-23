@@ -30,8 +30,8 @@ const context = require('audio-context')();
     };
 
     // var date = Date.UTC()
-    var date = new Date();
-    var a = date.setTimeZone(TimeZone.getTimeZone("GMT"));
+    var a = new Date('August 19, 1975 23:15:30 GMT+07:00');
+    //var a = date.setTimeZone(TimeZone.getTimeZone("GMT"));
     
     
     // var a = date.toGMTString()
