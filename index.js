@@ -326,20 +326,20 @@ function handleText(message, replyToken, source) {
      
     var gid = source.groupId
     
-    // var conn = new sql.ConnectionPool(dbConfig);
-    //     conn.connect().then(function() {
-    //           var req = new sql.Request(conn); 
+    var conn = new sql.ConnectionPool(dbConfig);
+        conn.connect().then(function() {
+              var req = new sql.Request(conn); 
 
-    //           // req.query("insert into FROM clock").then(function (result){
-    //           //                 for(var i=0;i<result.rowsAffected;i++){
-    //           //                   if(result.recordset[i].text != message.text)
-    //           //                   {
-    //   req.query("INSERT INTO [dbo].[clock] ([Cdate]) VALUES ('"+d+"')")
+              // req.query("insert into FROM clock").then(function (result){
+              //                 for(var i=0;i<result.rowsAffected;i++){
+              //                   if(result.recordset[i].text != message.text)
+              //                   {
+      req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
                                   return replyText(replyToken,Cdate) ;
               //                   }
               //                 }
               // }) // end select
-  // })  //end conn
+  })  //end conn
 
     // console.log(`Echo message to ${replyToken}: ${message.text}`);
     //   return replyText(replyToken,message.text) ;
