@@ -339,7 +339,7 @@ function handleText(message, replyToken, source) {
               //                   }
               //                 }
               // }) // end select
-  })  //end conn
+ // })  //end conn
 
     // console.log(`Echo message to ${replyToken}: ${message.text}`);
     //   return replyText(replyToken,message.text) ;
