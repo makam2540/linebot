@@ -29,7 +29,7 @@ const context = require('audio-context')();
                       }                      
     };
 
-    var date = Date.prototype.getDate()
+    var date = Date.getDate()
 
 // create LINE SDK config from env variables
 const config = {
