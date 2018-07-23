@@ -481,12 +481,14 @@ function handleLocation(message, replyToken) {
   // var longitude = message.longitude
   // var title = message.title
   var  address = message.address
+  var usid = message.userId
+  var qid = message.groupId
 
 var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
                   
-                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+message.userId+"' ,'"+message.groupId+"')")
+                req.query("INSERT INTO [dbo].[Location] ([address], [userId], [groupId]) VALUES ('"+address+"', '"+usid+"' ,'"+qid+"')")
               
      })
 
