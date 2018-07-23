@@ -29,7 +29,7 @@ const context = require('audio-context')();
                       }                      
     };
 
-    var date = Date()
+    var date = Date.prototype.getDate()
 
 // create LINE SDK config from env variables
 const config = {
@@ -326,16 +326,16 @@ function handleText(message, replyToken, source) {
      
     var gid = source.groupId
     
-    var conn = new sql.ConnectionPool(dbConfig);
-        conn.connect().then(function() {
-              var req = new sql.Request(conn); 
+    // var conn = new sql.ConnectionPool(dbConfig);
+    //     conn.connect().then(function() {
+    //           var req = new sql.Request(conn); 
 
-              // req.query("insert into FROM clock").then(function (result){
-              //                 for(var i=0;i<result.rowsAffected;i++){
-              //                   if(result.recordset[i].text != message.text)
-              //                   {
-      req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
-                                  return replyText(replyToken,Cdate) ;
+    //           // req.query("insert into FROM clock").then(function (result){
+    //           //                 for(var i=0;i<result.rowsAffected;i++){
+    //           //                   if(result.recordset[i].text != message.text)
+    //           //                   {
+    //   req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
+                                  return replyText(replyToken,date) ;
               //                   }
               //                 }
               // }) // end select
@@ -490,8 +490,6 @@ if(gId == null){
 }else{
   qId = gId
 }
-  
-
 var conn = new sql.ConnectionPool(dbConfig);
         conn.connect().then(function() {
               var req = new sql.Request(conn); 
@@ -521,12 +519,12 @@ function handleSticker(message, replyToken) {
     {
       // type : 'text',
       // text : message.packageId + "\n"+message.stickerId
-      // type: 'sticker',
-      // packageId: message.packageId,
-      // stickerId: message.stickerId,
       type: 'sticker',
-      packageId: "1",
-      stickerId: "4",
+      packageId: message.packageId,
+      stickerId: message.stickerId,
+      // type: 'sticker',
+      // packageId: "1",
+      // stickerId: "4",
     }
   );
 }
