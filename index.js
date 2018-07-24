@@ -5,17 +5,12 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
-var bodyParser = require('body-parser');
-var request = require('request');
+const bodyParser = require('body-parser')
+const request = require('request')
 var sql = require('mssql');
 var sqlInstance = require("mssql");
-var ffmpeg = require('ffmpeg');
-var ffprobe = require('ffprobe');
-var getDuration = require('get-audio-duration');
-var http = require('http');
-var pipe = require('pipe');
-const lenaBuffer = require('audio-lena/mp3-base64');
-const context = require('audio-context')();
+const image2base64 = require('image-to-base64');
+var time = require('time')(Date);
 
 
  var dbConfig = {
