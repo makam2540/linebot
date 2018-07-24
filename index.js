@@ -331,7 +331,7 @@ function handleText(message, replyToken, source) {
     //           //                   if(result.recordset[i].text != message.text)
     //           //                   {
     //   req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
-                                  return replyText(replyToken, date) ;
+                                  return replyText(replyToken, 'อิอิ') ;
               //                   }
               //                 }
               // }) // end select
@@ -530,4 +530,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`listening on ${port}`);
 });
-//haha
