@@ -31,7 +31,7 @@ const context = require('audio-context')();
 
     // var date = Date.UTC()
     var date = new Date();
-    var a = date.constructor
+  
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: 'Rz8z1ee8jjPGKgYsiVruxdBDpWA4ryYEh5QKu7KLtb4o1HN3h38LHyWUEoWYOGVolNmGP1fFw7UbxocelHU/0Y/j+b2/jch/cpqEW6dhyi8smlFI+vsQVttuzLtCZPHm5K7MNg39sFK7Z8jWxhv7ngdB04t89/1O/w1cDnyilFU=',
@@ -331,7 +331,7 @@ function handleText(message, replyToken, source) {
     //           //                   if(result.recordset[i].text != message.text)
     //           //                   {
     //   req.query("INSERT INTO [dbo].[text11] ([Cdate]) VALUES ('"+Cdate+"')")
-                                  return replyText(replyToken, "a") ;
+                                  return replyText(replyToken, date) ;
               //                   }
               //                 }
               // }) // end select
